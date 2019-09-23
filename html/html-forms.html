@@ -1,0 +1,568 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: Meridian
+  Date: 2019/5/30
+  Time: 23:28
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!DOCTYPE html>
+<html lang="zh_cn">
+<head>
+    <title>Ordeal</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="../css/fontNunitoSans.css" rel="stylesheet">
+    <link href="https://cdn.remixicon.com/releases/v1.2.2/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+          integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="../css/animate.css">
+    <link rel="stylesheet" href="../css/owl.carousel.min.css">
+    <link rel="stylesheet" href="../css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="../css/magnific-popup.css">
+    <link rel="stylesheet" href="../css/aos.css">
+    <link rel="stylesheet" href="../css/ionicons.min.css">
+    <link rel="stylesheet" href="../css/codestyle.css">
+    <link rel="stylesheet" href="../css/flaticon.css">
+    <link rel="stylesheet" href="../css/icomoon.css">
+    <link rel="stylesheet" href="../css/style.css">
+
+    <script>
+
+        function login() {
+            var sno = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+
+
+            //1.创建ajax对象
+            var xhr = ajaxFunction();
+            xhr.onreadystatechange = function() {
+                if(xhr.readyState == 4) {
+                    if(xhr.status == 200) {
+                        var data= xhr.responseText;
+                        if(data == 1){
+                            $('#myModal').modal('hide');
+                            $('#loginbtn').hide();
+                            //显示我的按钮或者跳转页面
+                        }else if(data == 0){
+                            alert('用户名或密码错误！');
+                        }
+                    }
+                }
+            };
+            //规定发送数据的形式（post/get），url，以及传输方式(同步/异步)
+            xhr.open("post","./login.do",true);
+            //post方式需要加下边这句，get方式不需要
+            xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+            //将页面输入数据发送到后台
+            xhr.send("sno="+sno+"&password="+password);
+        }
+
+        function ajaxFunction() {
+            var xmlHttp;
+            try {
+                xmlHttp = new XMLHttpRequest();
+            } catch(e) {
+                try {
+                    xmlHttp = new ActiveXObject("Msxm12.XMLHTTP");
+                } catch(e) {
+                    try {
+                        xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+                    } catch(e) {}
+                }
+            }
+            return xmlHttp;
+        }
+    </script>
+
+
+    <style type="text/css">
+        #box::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300" id="box">
+
+<%--导航栏--%>
+<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target"
+     id="ftco-navbar">
+    <div class="container">
+        <a class="navbar-brand" href="../index.jsp">Or<span>deal</span></a>
+        <button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse"
+                data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="oi oi-menu"></span> Menu
+        </button>
+        <div class="collapse navbar-collapse" id="ftco-nav">
+            <ul class="navbar-nav nav ml-auto" style="align-items: baseline">
+                <li class="nav-item">
+                    <a href="<c:if test="${success == \"true\"}">../index-login.jsp</c:if><c:if test="${success == null}">../index.jsp</c:if>" class="nav-link">
+                        <span>主页</span>
+                    </a>
+                </li>
+                <li class="nav-item"><a href="" class="nav-link dropdown-toggle" data-toggle="dropdown">HTML</a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a class="dropdown-item" href="../html-main.jsp">HTML 教程</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="../try/try.php?filename=tryhtml_intro">HTML 实例</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="../tags/html-reference.jsp">HTML 参考手册</a>
+                    </div>
+                </li>
+                <li class="nav-item"><a href="" class="nav-link dropdown-toggle" data-toggle="dropdown">CSS</a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a class="dropdown-item" href="#">CSS 教程</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">CSS 实例</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">CSS 参考手册</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">CSS 响应式设计</a>
+                    </div>
+                </li>
+                <li class="nav-item"><a href="" class="nav-link dropdown-toggle" data-toggle="dropdown">JavaScript</a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a class="dropdown-item" href="#">Javascript 教程</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">JS 函数</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">JS HTML DOM</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">JS 高级教程</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">JS 浏览器BOM</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">JS 库</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">JS 实例</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">JS 参考手册</a>
+                    </div>
+                </li>
+                <li class="nav-item"><a href="../note-main.jsp" class="nav-link"><span>笔记</span></a></li>
+                <%--下拉菜单--%>
+                <li class="nav-item"><a href="../share-main.jsp" class="nav-link"><span>模版</span></a></li>
+                <%//--下拉菜单--%>
+                <li class="nav-item"><a href="../exam-main.jsp" class="nav-link"><span>测验</span></a></li>
+                <li class="nav-item">
+                    <div class="col-1"></div>
+                </li>
+                <li class="nav-item">
+                    <button class="btn btn-outline-dark px-4 py-2" data-toggle="modal" data-target="#myModal"
+                            id="loginbtn" style="display: <c:if test="${success == \"true\"}">none</c:if>">登录
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<%--//导航栏--%>
+
+<section class="ftco-section ftco-no-pb ftco-no-pt ftco-services bg-light" id="services-section">
+    <div class="container">
+        <div class="row no-gutters">
+            <%--侧边栏--%>
+            <div class="col-md-3 ftco-animate py-5 nav-link-wrap">
+                <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+
+                    <%--                    <a class="nav-link px-4 " role="tab" data-toggle="pill" href="../html-main.jsp"><span class="mr-2 fab fa-html5 fa-fw"></span> HTML 教程--%>
+                    <%--                    </a>--%>
+                    <a class="nav-link px-4 " role="tab" id="html-2-tab" href="../html-main.jsp"
+                       aria-controls="html-2" aria-selected="true"><span class="mr-2 fab fa-html5 fa-fw"></span> HTML 教程
+                    </a>
+                    <div class="divider"></div>
+                    <a class="nav-link px-4" role="tab" id="html-3-tab" href="html-intro.jsp"
+                       aria-controls="html-3" aria-selected="false"><span class="mr-2 fas fa-stream fa-fw"></span> HTML
+                        简介
+                    </a>
+                    <div class="divider"></div>
+                    <a class="nav-link px-4" role="tab" id="html-4-tab" href="html-editors.jsp"
+                       aria-controls="html-4" aria-selected="false"><span class="mr-2 fas fa-keyboard fa-fw"></span>
+                        HTML 编辑器
+                    </a>
+                    <div class="divider"></div>
+                    <a class="nav-link px-4" role="tab" id="html-5-tab" href="html-basic.jsp"
+                       aria-controls="html-5" aria-selected="false"><span class="mr-2 fas fa-tag fa-fw"></span> HTML 基础
+                    </a>
+                    <div class="divider"></div>
+                    <a class="nav-link px-4" role="tab" id="html-6-tab" href="html-elements.jsp"
+                       aria-controls="html-6" aria-selected="false"><span class="mr-2 fab fa-elementor fa-fw"></span>
+                        HTML 元素
+                    </a>
+                    <div class="divider"></div>
+                    <a class="nav-link px-4" role="tab" id="html-7-tab" href="html-attributes.jsp"
+                       aria-controls="html-7" aria-selected="false"><span class="mr-2 fas fas fa-percent fa-fw"></span>
+                        HTML 属性
+                    </a>
+                    <div class="divider"></div>
+                    <a class="nav-link px-4" role="tab" id="html-8-tab" href="html-headings.jsp"
+                       aria-controls="html-8" aria-selected="false"><span class="mr-2 fas fa-quote-left fa-fw"></span>
+                        HTML 标题
+                    </a>
+                    <div class="divider"></div>
+                    <a class="nav-link px-4" role="tab" id="html-9-tab" href="html-paragraphs.jsp"
+                       aria-controls="html-9" aria-selected="false"><span class="mr-2 fas fa-outdent fa-fw"></span> HTML
+                        段落
+                    </a>
+                    <div class="divider"></div>
+                    <a class="nav-link px-4" role="tab" id="html-10-tab" href="html-formatting.jsp"
+                       aria-controls="html-10" aria-selected="false"><span class="mr-2 fas fa-text-height fa-fw"></span>
+                        HTML
+                        文本格式化
+                    </a>
+                    <div class="divider"></div>
+                    <a class="nav-link px-4" role="tab" id="html-11-tab" href="html-links.jsp"
+                       aria-controls="html-11" aria-selected="false"><span class="mr-2 fas fa-link fa-fw"></span> HTML
+                        链接
+                    </a>
+                    <div class="divider"></div>
+                    <a class="nav-link px-4" role="tab" id="html-12-tab" href="html-head.jsp"
+                       aria-controls="html-12" aria-selected="false"><span class="mr-2 fas fa-heading fa-fw"></span>
+                        HTML 头部
+                    </a>
+                    <div class="divider"></div>
+                    <a class="nav-link px-4" role="tab" id="html-13-tab" href="html-css.jsp"
+                       aria-controls="html-13" aria-selected="false"><span class="mr-2 fab fa-css3 fa-fw"></span> HTML
+                        CSS
+                    </a>
+                    <div class="divider"></div>
+                    <a class="nav-link px-4" role="tab" id="html-14-tab" href="html-images.jsp" onclick="window.location.href='html/html-images.jsp'"
+                       aria-controls="html-14" aria-selected="false"><span
+                            class="mr-2 	far fa-file-image fa-fw"></span> HTML 图像
+                    </a>
+                    <div class="divider"></div>
+                    <a class="nav-link px-4" role="tab" id="html-15-tab" href="html-tables.jsp"
+                       aria-controls="html-15" aria-selected="false"><span
+                            class="mr-2 fas fa-window-maximize fa-fw"></span> HTML 表格
+                    </a>
+                    <div class="divider"></div>
+                    <a class="nav-link px-4" role="tab" id="html-16-tab" href="html-lists.jsp"
+                       aria-controls="html-16" aria-selected="false"><span class="mr-2 fas fa-list fa-fw"></span> HTML
+                        列表
+                    </a>
+                    <div class="divider"></div>
+                    <a class="nav-link px-4" role="tab" id="html-17-tab" href="html-blocks.jsp"
+                       aria-controls="html-17" aria-selected="false"><span
+                            class="mr-2 fas fa-object-group fa-fw"></span> HTML 区块
+                    </a>
+                    <div class="divider"></div>
+                    <a class="nav-link px-4" role="tab" id="html-18-tab" href="html-layouts.jsp"
+                       aria-controls="html-18" aria-selected="false"><span
+                            class="mr-2 fas fa-bezier-curve fa-fw"></span> HTML 布局
+                    </a>
+                    <div class="divider"></div>
+                    <a class="nav-link px-4 active" role="tab" id="html-19-tab" href="html-forms.jsp"
+                       aria-controls="html-19" aria-selected="false"><span class="mr-2 fas fa-table fa-fw"></span> HTML
+                        表单
+                    </a>
+                    <div class="divider"></div>
+                    <a class="nav-link px-4" role="tab" id="html-20-tab" href="html-iframes.jsp"
+                       aria-controls="html-20" aria-selected="false"><span class="mr-2 fas fa-laptop-code fa-fw"></span>
+                        HTML 框架
+                    </a>
+                    <div class="divider"></div>
+                </div>
+            </div>
+
+            <div class="col-md-9 ftco-animate p-4 d-flex align-items-center">
+                <div class="tab-content pl-md-5" id="v-pills-tabContent">
+
+                    <div class="tab-pane fade show active py-5" role="tabpanel" aria-labelledby="html-2-tab">
+
+                        <div class="article-body">
+
+                            <div class="article-intro" id="content">
+
+                                <h1>HTML <span class="color_h1">表单和输入</span></h1>
+                                <hr>
+                                <p class="intro">HTML 表单用于收集不同类型的用户输入。</p>
+                                <hr>
+                                <div class="tryit_ex">
+                                    <img src="../images/tryitimg.gif" width="40" height="46px" alt="Examples">
+                                    <h2>在线实例</h2>
+                                </div>
+                                <p><a target="_blank" href="../try/try.php?filename=tryhtml_input">创建文本字段 (Text field)</a><br>
+                                    本例演示如何在 HTML 页面创建文本域。用户可以在文本域中写入文本。</p>
+                                <p><a target="_blank" href="../try/try.php?filename=tryhtml_inputpassword">创建密码字段</a><br>
+                                    本例演示如何创建 HTML 的密码域。</p>
+                                <p>（在本页底端可以找到更多实例。）</p>
+                                <hr>
+
+                                <h2>HTML 表单</h2>
+                                <p>表单是一个包含表单元素的区域。</p>
+                                <p>表单元素是允许用户在表单中输入内容,比如：文本域(textarea)、下拉列表、单选框(radio-buttons)、复选框(checkboxes)等等。</p>
+                                <p>表单使用表单标签 &lt;form&gt; 来设置:</p>
+
+                                <div class="code notranslate"><div>
+                                    &lt;form&gt;<br>
+                                    .<br>
+                                    <i>input 元素</i><br>
+                                    .<br>
+                                    &lt;/form&gt;<br>
+                                </div></div>
+                                <br>
+                                <hr>
+
+                                <h2>HTML 表单 - 输入元素</h2>
+                                <p>多数情况下被用到的表单标签是输入标签（&lt;input&gt;）。</p><p>输入类型是由类型属性（type）定义的。大多数经常被用到的输入类型如下：</p>
+
+                                <hr>
+
+                                <h2>文本域（Text Fields）</h2>
+                                <p>文本域通过&lt;input type="text"&gt; 标签来设定，当用户要在表单中键入字母、数字等内容时，就会用到文本域。</p>
+                                <div class="code notranslate"><div>
+                                    &lt;form&gt;<br>
+                                    First name:
+                                    &lt;input type="text" name="firstname"&gt;&lt;br&gt;<br>
+                                    Last name:
+                                    &lt;input type="text" name="lastname"&gt;<br>
+                                    &lt;/form&gt;
+                                </div></div>
+
+                                <p>浏览器显示如下：</p>
+                                <form action="">
+                                    First name: <input type="text" name="firstname" size="20"><br>
+                                    Last name: <input type="text" name="lastname" size="20">
+                                </form>
+                                <p><b> 注意:</b>表单本身并不可见。同时，在大多数浏览器中，文本域的缺省宽度是20个字符。
+                                </p>
+                                <hr>
+
+                                <h2>密码字段</h2>
+                                <p>密码字段通过标签&lt;input type="password"&gt; 来定义:</p>
+                                <div class="code notranslate"><div>
+                                    &lt;form&gt;<br>
+                                    Password:
+                                    &lt;input type="password" name="pwd"&gt;<br>
+                                    &lt;/form&gt;
+                                </div></div>
+
+                                <p>浏览器显示效果如下:</p>
+                                <form action="">
+                                    Password: <input type="password" name="pwd">
+                                </form>
+                                <p><b>注意:</b>密码字段字符不会明文显示，而是以星号或圆点替代。</p>
+                                <hr>
+
+                                <h2>单选按钮（Radio Buttons）</h2>
+                                <p>&lt;input type="radio"&gt; 标签定义了表单单选框选项</p>
+                                <div class="code notranslate"><div>
+                                    &lt;form&gt;<br>
+                                    &lt;input type="radio" name="sex" value="male"&gt;Male&lt;br&gt;<br>
+                                    &lt;input type="radio" name="sex" value="female"&gt;Female<br>
+                                    &lt;/form&gt;
+                                </div></div>
+
+                                <p>浏览器显示效果如下:</p>
+                                <form action="">
+                                    <input type="radio" name="sex" value="male">Male<br>
+                                    <input type="radio" name="sex" value="female">Female
+                                </form>
+                                <hr>
+
+                                <h2>复选框（Checkboxes）</h2>
+                                <p>&lt;input type="checkbox"&gt; 定义了复选框. 用户需要从若干给定的选择中选取一个或若干选项。</p>
+                                <div class="code notranslate"><div>
+                                    &lt;form&gt;<br>
+                                    &lt;input type="checkbox" name="vehicle" value="Bike"&gt;I have a bike&lt;br&gt;<br>
+                                    &lt;input type="checkbox" name="vehicle" value="Car"&gt;I have a car <br>
+                                    &lt;/form&gt;
+                                </div></div>
+
+                                <p>浏览器显示效果如下:</p>
+                                <form action="">
+                                    <input type="checkbox" name="vehicle" value="Bike">I have a bike<br>
+                                    <input type="checkbox" name="vehicle" value="Car">I have a car
+                                </form>
+                                <hr>
+
+                                <h2>提交按钮(Submit Button)</h2>
+                                <p>&lt;input type="submit"&gt; 定义了提交按钮.</p>
+                                <p>当用户单击确认按钮时，表单的内容会被传送到另一个文件。表单的动作属性定义了目的文件的文件名。由动作属性定义的这个文件通常会对接收到的输入数据进行相关的处理。:</p>
+                                <div class="code notranslate"><div>
+                                    &lt;form name="input" action="html_form_action.php" method="get"&gt;<br>
+                                    Username:
+                                    &lt;input type="text" name="user"&gt;<br>
+                                    &lt;input type="submit" value="Submit"&gt;<br>
+                                    &lt;/form&gt;
+                                </div></div>
+
+                                <p>浏览器显示效果如下:</p>
+                                <form name="input0" target="_blank" action="#" method="get">
+<%--                                    <form name="input0" target="_blank" action="/try/demo_source/html_form_action.php" method="get">--%>
+                                    Username: <input type="text" name="user" size="20"><input type="submit" value="Submit">
+                                </form>
+
+                                <p>
+                                    假如您在上面的文本框内键入几个字母，然后点击确认按钮，那么输入数据会传送到 "html_form_action.php" 的页面。该页面将显示出输入的结果。
+                                </p>
+                                <hr>
+
+                                <h2>
+                                    <img border="0" align="middle" src="../images/tryitpic.gif" width="44" height="46" alt="Try it">
+                                    更多实例</h2>
+
+                                <p><a target="_blank" href="../try/try.php?filename=tryhtml_radio">单选按钮(Radio buttons)</a><br>
+                                    本例演示如何在 HTML 中创建单选按钮。</p>
+                                <p><a target="_blank" href="../try/try.php?filename=tryhtml_checkbox">复选框(Checkboxes)</a><br>
+                                    本例演示如何在 HTML 页中创建复选框。用户可以选中或取消选取复选框。</p>
+                                <p><a target="_blank" href="../try/try.php?filename=tryhtml_select2">简单的下拉列表</a><br>
+                                    本例演示如何在 HTML 页面中创建简单的下拉列表框。下拉列表框是一个可选列表。</p>
+                                <p><a target="_blank" href="../try/try.php?filename=tryhtml_select3">预选下拉列表</a><br>
+                                    本例演示如何创建一个简单的带有预选值的下拉列表。</p>
+                                <p><a target="_blank" href="../try/try.php?filename=tryhtml_textarea">文本域(Textarea)</a><br>
+                                    本例演示如何创建文本域（多行文本输入控件）。用户可在文本域中写入文本。可写入字符的字数不受限制。</p>
+                                <p><a target="_blank" href="../try/try.php?filename=tryhtml_button">创建按钮</a><br>
+                                    本例演示如何创建按钮。你可以对按钮上的文字进行自定义。</p>
+
+                                <h2>
+                                    <img border="0" align="middle" src="../images/tryitpic.gif" width="44" height="46" alt="Try it">
+                                    表单实例</h2>
+                                <p><a target="_blank" href="../try/try.php?filename=tryhtml_legend">带边框的表单</a><br>
+                                    本例演示如何在数据周围绘制一个带标题的框。</p>
+                                <p><a target="_blank" href="../try/try.php?filename=tryhtml_form_submit">带有输入框和确认按钮的表单</a><br>
+                                    本例演示如何向页面添加表单。此表单包含两个输入框和一个确认按钮。</p>
+                                <p><a target="_blank" href="../try/try.php?filename=tryhtml_form_checkbox">带有复选框的表单</a><br>
+                                    此表单包含两个复选框和一个确认按钮。</p>
+                                <p><a target="_blank" href="../try/try.php?filename=tryhtml_form_radio">带有单选按钮的表单</a><br>
+                                    此表单包含两个单选框和一个确认按钮。</p>
+                                <p><a target="_blank" href="../try/try.php?filename=tryhtml_form_mail">从表单发送电子邮件</a><br>
+                                    此例演示如何从表单发送电子邮件。</p>
+                                <hr>
+
+                                <h2>HTML 表单标签</h2>
+                                <p><span class="new" style="float:left;">New</span>&nbsp;: HTML5新标签</p>
+                                <table class="reference">
+                                    <tbody><tr>
+                                        <th align="left">标签</th>
+                                        <th align="left">描述</th>
+                                    </tr>
+                                    <tr>
+                                        <td><a target="_blank" href="#">&lt;form&gt;</a></td>
+<%--                                        <td><a target="_blank" href="/tags/tag-form.html">&lt;form&gt;</a></td>--%>
+                                        <td> 定义供用户输入的表单</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a target="_blank" href="#">&lt;input&gt;</a></td>
+<%--                                        <td><a target="_blank" href="/tags/tag-input.html">&lt;input&gt;</a></td>--%>
+                                        <td>定义输入域</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a target="_blank" href="#">&lt;textarea&gt;</a></td>
+<%--                                        <td><a target="_blank" href="/tags/tag-textarea.html">&lt;textarea&gt;</a></td>--%>
+                                        <td>定义文本域 (一个多行的输入控件)</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a target="_blank" href="#">&lt;label&gt;</a></td>
+<%--                                        <td><a target="_blank" href="/tags/tag-label.html">&lt;label&gt;</a></td>--%>
+                                        <td>定义了 &lt;input&gt; 元素的标签，一般为输入标题</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a target="_blank" href="#">&lt;fieldset&gt;</a></td>
+<%--                                        <td><a target="_blank" href="/tags/tag-fieldset.html">&lt;fieldset&gt;</a></td>--%>
+                                        <td>定义了一组相关的表单元素，并使用外框包含起来</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a target="_blank" href="#">&lt;legend&gt;</a></td>
+<%--                                        <td><a target="_blank" href="/tags/tag-legend.html">&lt;legend&gt;</a></td>--%>
+                                        <td>定义了  &lt;fieldset&gt; 元素的标题</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a target="_blank" href="#">&lt;select&gt;</a></td>
+<%--                                        <td><a target="_blank" href="/tags/tag-select.html">&lt;select&gt;</a></td>--%>
+                                        <td>定义了下拉选项列表</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a target="_blank" href="#">&lt;optgroup&gt;</a></td>
+<%--                                        <td><a target="_blank" href="/tags/tag-optgroup.html">&lt;optgroup&gt;</a></td>--%>
+                                        <td>定义选项组</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a target="_blank" href="#">&lt;option&gt;</a></td>
+<%--                                        <td><a target="_blank" href="/tags/tag-option.html">&lt;option&gt;</a></td>--%>
+                                        <td>定义下拉列表中的选项</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a target="_blank" href="#">&lt;button&gt;</a></td>
+<%--                                        <td><a target="_blank" href="/tags/tag-button.html">&lt;button&gt;</a></td>--%>
+                                        <td>定义一个点击按钮</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a target="_blank" href="#">&lt;datalist&gt;</a>
+<%--                                        <td><a target="_blank" href="/tags/tag-datalist.html">&lt;datalist&gt;</a>--%>
+                                            <span class="new">New</span></td>
+                                        <td>指定一个预先定义的输入控件选项列表</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a target="_blank" href="#">&lt;keygen&gt;</a>
+<%--                                        <td><a target="_blank" href="/tags/tag-keygen.html">&lt;keygen&gt;</a>--%>
+                                            <span class="new">New</span></td>
+                                        <td>定义了表单的密钥对生成器字段</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a target="_blank" href="#">&lt;output&gt;</a>
+<%--                                        <td><a target="_blank" href="/tags/tag-output.html">&lt;output&gt;</a>--%>
+                                            <span class="new">New</span></td>
+                                        <td>定义一个计算结果</td>
+                                    </tr>
+                                    </tbody></table>			<!-- 其他扩展 -->
+
+                            </div>
+
+                        </div>
+
+                        <p><a href="../note-main.jsp" class="btn btn-primary px-4 py-3">去记笔记</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- MODAL -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header"><h3 class="modal-title" id="myModalLabel">登录</h3>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <%--                <form action= method="post">--%>
+                <div class="form-group">
+                    <label class="form-check-label" for="username">&ensp;用户id</label>
+                    <input type="text" placeholder="username..." class="form-control" id="username" name="username">
+                </div>
+                <div class="form-group">
+                    <label class="form-check-label" for="password">&ensp;密码</label>
+                    <input type="password" placeholder="password..." class="form-control" id="password" name="password">
+                </div>
+                <button class="btn btn-primary" onclick="login()">确认</button>
+                <%--                </form>--%>
+            </div>
+        </div>
+    </div>
+</div>
+<%--java script--%>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/jquery-migrate-3.0.1.min.js"></script>
+<script src="../js/popper.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/jquery.easing.1.3.js"></script>
+<script src="../js/jquery.waypoints.min.js"></script>
+<script src="../js/jquery.stellar.min.js"></script>
+<script src="../js/owl.carousel.min.js"></script>
+<script src="../js/jquery.magnific-popup.min.js"></script>
+<script src="../js/aos.js"></script>
+<script src="../js/jquery.animateNumber.min.js"></script>
+<script src="../js/scrollax.min.js"></script>
+<script src="../js/google-map.js"></script>
+
+<script src="../js/main.js"></script>
+
+</body>
+</html>

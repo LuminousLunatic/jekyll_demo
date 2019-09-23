@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head> 
+<meta charset="utf-8"> 
+<title>菜鸟教程(runoob.com)</title> 
+</head>
+<body>
+
+<object width="400" height="50" data="bookmark.swf"></object>
+ 
+</body>
+</html>

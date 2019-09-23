@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head> 
+<meta charset="utf-8"> 
+<title>菜鸟教程(runoob.com)</title> 
+</head>
+<body>
+
+<h2>Playing the Object</h2>
+
+<embed src="intro.swf" width="200" height="200"><p>如果你无法看到该视频,那么可能你的电脑不支持该文件格式。</p>
+
+</body>
+</html>

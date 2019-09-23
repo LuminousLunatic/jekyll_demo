@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head> 
+<meta charset="utf-8"> 
+<title>菜鸟教程(runoob.com)</title> 
+</head>
+<body>
+
+<h2>点击这个链接打开查看</h2>
+
+<a href="intro.swf">播放视频文件</a> 
+
+</body>
+</html>

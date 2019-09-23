@@ -1,0 +1,1245 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: Meridian
+  Date: 2019/6/8
+  Time: 12:38
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!DOCTYPE html>
+<html lang="zh_cn">
+<head>
+    <title>Ordeal</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="../css/fontNunitoSans.css" rel="stylesheet">
+    <link href="https://cdn.remixicon.com/releases/v1.2.2/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+          integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="../css/animate.css">
+    <link rel="stylesheet" href="../css/owl.carousel.min.css">
+    <link rel="stylesheet" href="../css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="../css/magnific-popup.css">
+    <link rel="stylesheet" href="../css/aos.css">
+    <link rel="stylesheet" href="../css/ionicons.min.css">
+    <link rel="stylesheet" href="../css/codestyle.css">
+    <link rel="stylesheet" href="../css/flaticon.css">
+    <link rel="stylesheet" href="../css/icomoon.css">
+    <link rel="stylesheet" href="../css/style.css">
+
+    <script>
+
+        function login() {
+            var sno = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+
+
+            //1.创建ajax对象
+            var xhr = ajaxFunction();
+            xhr.onreadystatechange = function() {
+                if(xhr.readyState == 4) {
+                    if(xhr.status == 200) {
+                        var data= xhr.responseText;
+                        if(data == 1){
+                            $('#myModal').modal('hide');
+                            $('#loginbtn').hide();
+                            //显示我的按钮或者跳转页面
+                        }else if(data == 0){
+                            alert('用户名或密码错误！');
+                        }
+                    }
+                }
+            };
+            //规定发送数据的形式（post/get），url，以及传输方式(同步/异步)
+            xhr.open("post","./login.do",true);
+            //post方式需要加下边这句，get方式不需要
+            xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+            //将页面输入数据发送到后台
+            xhr.send("sno="+sno+"&password="+password);
+        }
+
+        function ajaxFunction() {
+            var xmlHttp;
+            try {
+                xmlHttp = new XMLHttpRequest();
+            } catch(e) {
+                try {
+                    xmlHttp = new ActiveXObject("Msxm12.XMLHTTP");
+                } catch(e) {
+                    try {
+                        xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+                    } catch(e) {}
+                }
+            }
+            return xmlHttp;
+        }
+    </script>
+
+
+    <style type="text/css">
+        #box::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300" id="box">
+
+<%--导航栏--%>
+<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target"
+     id="ftco-navbar">
+    <div class="container">
+        <a class="navbar-brand" href="../index.jsp">Or<span>deal</span></a>
+        <button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse"
+                data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="oi oi-menu"></span> Menu
+        </button>
+        <div class="collapse navbar-collapse" id="ftco-nav">
+            <ul class="navbar-nav nav ml-auto" style="align-items: baseline">
+                <li class="nav-item">
+                    <a href="<c:if test="${success == \"true\"}">../index-login.jsp</c:if><c:if test="${success == null}">../index.jsp</c:if>" class="nav-link">
+                        <span>主页</span>
+                    </a>
+                </li>
+                <li class="nav-item"><a href="" class="nav-link dropdown-toggle" data-toggle="dropdown">HTML</a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a class="dropdown-item" href="../html-main.jsp">HTML 教程</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="../try/try.php?filename=tryhtml_intro">HTML 实例</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="../html-reference.jsp">HTML 参考手册</a>
+                    </div>
+                </li>
+                <li class="nav-item"><a href="" class="nav-link dropdown-toggle" data-toggle="dropdown">CSS</a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a class="dropdown-item" href="#">CSS 教程</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">CSS 实例</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">CSS 参考手册</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">CSS 响应式设计</a>
+                    </div>
+                </li>
+                <li class="nav-item"><a href="" class="nav-link dropdown-toggle" data-toggle="dropdown">JavaScript</a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a class="dropdown-item" href="#">Javascript 教程</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">JS 函数</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">JS HTML DOM</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">JS 高级教程</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">JS 浏览器BOM</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">JS 库</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">JS 实例</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">JS 参考手册</a>
+                    </div>
+                </li>
+                <li class="nav-item"><a href="../note-main.jsp" class="nav-link"><span>笔记</span></a></li>
+                <%--下拉菜单--%>
+                <li class="nav-item"><a href="../share-main.jsp" class="nav-link"><span>模版</span></a></li>
+                <%//--下拉菜单--%>
+                <li class="nav-item"><a href="../exam-main.jsp" class="nav-link"><span>测验</span></a></li>
+                <li class="nav-item">
+                    <div class="col-1"></div>
+                </li>
+                <li class="nav-item">
+                    <button class="btn btn-outline-dark px-4 py-2" data-toggle="modal" data-target="#myModal"
+                            id="loginbtn" style="display: <c:if test="${success == \"true\"}">none</c:if>">登录
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<%--//导航栏--%>
+<section class="ftco-section ftco-no-pb ftco-no-pt ftco-services bg-light" id="services-section">
+    <div class="container">
+        <div class="row no-gutters">
+            <div class="col-md-4 ftco-animate py-5 nav-link-wrap"
+                 style="background: linear-gradient(90deg,#9999cc 0%,#99cccc 100%);">
+                <div class="left-column">
+                    <div class="sidebar-boxx gallery-list">
+                        <div class="design" id="leftcolumn">
+                            <a target="_top" title="HTML 标签列表(字母排序)" href="html-reference.jsp">
+                                HTML 标签列表(字母排序) </a>
+                            <a target="_top" title="HTML 标签列表（功能排序）" href="ref-byfunc.jsp" class="active">
+                                HTML 标签列表（功能排序） </a>
+                            <a target="_top" title="HTML 全局属性" href="ref-standardattributes.jsp">
+                                HTML 全局属性 </a>
+                            <a target="_top" title="HTML 事件" href="ref-eventattributes.jsp">
+                                HTML 事件 </a>
+                            <a target="_top" title="HTML 画布" href="ref-canvas.jsp">
+                                HTML 画布 </a>
+                            <a target="_top" title="HTML 音频/视频" href="ref-av-dom.jsp">
+                                HTML 音频/视频 </a>
+                            <a target="_top" title="HTML 有效DOCTYPES" href="html-elementsdoctypes.jsp">
+                                HTML 有效DOCTYPES </a>
+                            <a target="_top" title="HTML 颜色名" href="html-colorname.jsp">
+                                <%--class="active"> style="background-color: rgb(150, 185, 125); font-weight: bold; color: rgb(255, 255, 255);">--%>
+                                HTML 颜色名 </a>
+                            <a target="_top" title="HTML 拾色器" href="html-colorpicker.jsp">
+                                HTML 拾色器 </a>
+                            <a target="_top" title="HTML 颜色混搭" href="colors-mixer.jsp">
+                                HTML 颜色混搭 </a>
+                            <a target="_top" title="HTML 字符集" href="ref-charactersets.jsp">
+                                HTML 字符集 </a>
+                            <a target="_top" title="HTML ASCII 参考手册" href="html-ascii.jsp">
+                                HTML ASCII </a>
+                            <a target="_top" title="HTML ISO-8859-1 参考手册" href="ref-entities.jsp">
+                                HTML ISO-8859-1 </a>
+                            <a target="_top" title="HTML 符号实体参考手册" href="html-symbols.jsp">
+                                HTML 符号 </a>
+                            <a target="_top" title="HTML URL 编码参考手册" href="html-urlencode.jsp">
+                                HTML URL 编码 </a>
+                            <a target="_top" title="HTML 语言代码参考手册" href="html-language-codes.jsp">
+                                HTML 语言代码 </a>
+                            <a target="_top" title="HTTP 状态消息" href="html-httpmessages.jsp">
+                                HTTP 消息 </a>
+                            <a target="_top" title="HTTP 方法：GET 对比 POST" href="html-httpmethods.jsp">
+                                HTTP 方法 </a>
+                            <a target="_top" title=" Px/Em 换算工具" href="ref-pxtoemconversion.jsp">
+                                Px/Em 换算工具 </a>
+                            <a target="_top" title="键盘快捷键" href="html-keyboardshortcuts.jsp">
+                                键盘快捷键 </a>
+                            <br><br>
+                            <h2 class="left" style="text-align: center;"><span class="left_h2">HTML</span> 标签</h2>
+                            <div class="hashtags" id="hashtags">
+                                <a target="_top" title="HTML <!–…–> 注释标签" href="tag-comment.jsp">
+                                    &lt;!--&gt; </a>
+                                <a target="_top" title="HTML <!DOCTYPE> 声明" href="tag-doctype.jsp">
+                                    &lt;!DOCTYPE&gt; </a>
+                                <a target="_top" title="HTML <a> 标签" href="tag-a.jsp">
+                                    &lt;a&gt; </a>
+                                <a target="_top" title="HTML <abbr> 标签" href="tag-abbr.jsp">
+                                    &lt;abbr&gt; </a>
+                                <a target="_top" title="HTML <acronym> 标签" href="tag-acronym.jsp">
+                                    &lt;acronym&gt; </a>
+                                <a target="_top" title="HTML <address> 标签" href="tag-address.jsp">
+                                    &lt;address&gt; </a>
+                                <a target="_top" title="HTML <applet> 标签" href="tag-applet.jsp">
+                                    &lt;applet&gt; </a>
+                                <a target="_top" title="HTML <area> 标签" href="tag-area.jsp">
+                                    &lt;area&gt; </a>
+                                <a target="_top" title="HTML <article>  标签" href="tag-article.jsp">
+                                    &lt;article&gt; </a>
+                                <a target="_top" title="HTML <aside> 标签" href="tag-aside.jsp">
+                                    &lt;aside&gt; </a>
+                                <a target="_top" title="HTML <audio> 标签" href="tag-audio.jsp">
+                                    &lt;audio&gt; </a>
+                                <a target="_top" title="HTML <b> 标签" href="tag-b.jsp">
+                                    &lt;b&gt; </a>
+                                <a target="_top" title="HTML <base> 标签" href="tag-base.jsp">
+                                    &lt;base&gt; </a>
+                                <a target="_top" title="HTML <basefont> 标签" href="tag-basefont.jsp">
+                                    &lt;basefont&gt; </a>
+                                <a target="_top" title="HTML <bdi> 标签" href="tag-bdi.jsp">
+                                    &lt;bdi&gt; </a>
+                                <a target="_top" title="HTML <bdo>  标签" href="tag-bdo.jsp">
+                                    &lt;bdo&gt; </a>
+                                <a target="_top" title="HTML <big> 标签" href="tag-big.jsp">
+                                    &lt;big&gt; </a>
+                                <a target="_top" title="HTML <blockquote> 标签" href="tag-blockquote.jsp">
+                                    &lt;blockquote&gt; </a>
+                                <a target="_top" title="HTML <body> 标签" href="tag-body.jsp">
+                                    &lt;body&gt; </a>
+                                <a target="_top" title="HTML <br> 标签" href="tag-br.jsp">
+                                    &lt;br&gt; </a>
+                                <a target="_top" title="HTML <button> 标签" href="tag-button.jsp">
+                                    &lt;button&gt; </a>
+                                <a target="_top" title="HTML <canvas> 标签" href="tag-canvas.jsp">
+                                    &lt;canvas&gt; </a>
+                                <a target="_top" title="HTML <caption> 标签" href="tag-caption.jsp">
+                                    &lt;caption&gt; </a>
+                                <a target="_top" title="HTML <center> 标签" href="tag-center.jsp">
+                                    &lt;center&gt; </a>
+                                <a target="_top" title="HTML <cite> 标签" href="tag-cite.jsp">
+                                    &lt;cite&gt; </a>
+                                <a target="_top" title="HTML <code> 标签" href="tag-code.jsp">
+                                    &lt;code&gt; </a>
+                                <a target="_top" title="HTML <col> 标签" href="tag-col.jsp">
+                                    &lt;col&gt; </a>
+                                <a target="_top" title="HTML <colgroup> 标签" href="tag-colgroup.jsp">
+                                    &lt;colgroup&gt; </a>
+                                <a target="_top" title="HTML <command> 标签" href="tag-command.jsp">
+                                    &lt;command&gt; </a>
+                                <a target="_top" title="HTML <datalist> 标签" href="tag-datalist.jsp">
+                                    &lt;datalist&gt; </a>
+                                <a target="_top" title="HTML <dd> 标签" href="tag-dd.jsp">
+                                    &lt;dd&gt; </a>
+                                <a target="_top" title="HTML <del> 标签" href="tag-del.jsp">
+                                    &lt;del&gt; </a>
+                                <a target="_top" title="HTML <details> 标签" href="tag-details.jsp">
+                                    &lt;details&gt; </a>
+                                <a target="_top" title="HTML <dfn> 标签" href="tag-dfn.jsp">
+                                    &lt;dfn&gt; </a>
+                                <a target="_top" title="HTML <dialog> 标签" href="tag-dialog.jsp">
+                                    &lt;dialog&gt; </a>
+                                <a target="_top" title="HTML <dir> 标签" href="tag-dir.jsp">
+                                    &lt;dir&gt; </a>
+                                <a target="_top" title="HTML <div> 标签" href="tag-div.jsp">
+                                    &lt;div&gt; </a>
+                                <a target="_top" title="HTML <dl> 标签" href="tag-dl.jsp">
+                                    &lt;dl&gt; </a>
+                                <a target="_top" title="HTML <dt> 标签" href="tag-dt.jsp">
+                                    &lt;dt&gt; </a>
+                                <a target="_top" title="HTML <em> 标签" href="tag-em.jsp">
+                                    &lt;em&gt; </a>
+                                <a target="_top" title="HTML <embed> 标签" href="tag-embed.jsp">
+                                    &lt;embed&gt; </a>
+                                <a target="_top" title="HTML <fieldset> 标签" href="tag-fieldset.jsp">
+                                    &lt;fieldset&gt; </a>
+                                <a target="_top" title="HTML <figcaption> 标签" href="tag-figcaption.jsp">
+                                    &lt;figcaption&gt; </a>
+                                <a target="_top" title="HTML <figure> 标签" href="tag-figure.jsp">
+                                    &lt;figure&gt; </a>
+                                <a target="_top" title="HTML <font> 标签" href="tag-font.jsp">
+                                    &lt;font&gt; </a>
+                                <a target="_top" title="HTML <footer> 标签" href="tag-footer.jsp">
+                                    &lt;footer&gt; </a>
+                                <a target="_top" title="HTML <form> 标签" href="tag-form.jsp">
+                                    &lt;form&gt; </a>
+                                <a target="_top" title="HTML <frame> 标签" href="tag-frame.jsp">
+                                    &lt;frame&gt; </a>
+                                <a target="_top" title="HTML <frameset> 标签" href="tag-frameset.jsp">
+                                    &lt;frameset&gt; </a>
+                                <a target="_top" title="HTML <head> 标签" href="tag-head.jsp">
+                                    &lt;head&gt; </a>
+                                <a target="_top" title="HTML <header> 标签" href="tag-header.jsp">
+                                    &lt;header&gt; </a>
+                                <a target="_top" title="HTML <hgroup> 标签" href="tag-hgroup.jsp">
+                                    &lt;hgroup&gt; </a>
+                                <a target="_top" title="HTML <h1> – <h6> 标签" href="tag-hn.jsp">
+                                    &lt;h1&gt; - &lt;h6&gt; </a>
+                                <a target="_top" title="HTML <hr> 标签" href="tag-hr.jsp">
+                                    &lt;hr&gt; </a>
+                                <a target="_top" title="HTML <i> 标签" href="tag-i.jsp">
+                                    &lt;i&gt; </a>
+                                <a target="_top" title="HTML <iframe> 标签" href="tag-iframe.jsp">
+                                    &lt;iframe&gt; </a>
+                                <a target="_top" title="HTML <img> 标签" href="tag-img.jsp">
+                                    &lt;img&gt; </a>
+                                <a target="_top" title="HTML <input> 标签" href="tag-input.jsp">
+                                    &lt;input&gt; </a>
+                                <a target="_top" title="HTML <ins> 标签" href="tag-ins.jsp">
+                                    &lt;ins&gt; </a>
+                                <a target="_top" title="HTML <kbd> 标签" href="tag-kbd.jsp">
+                                    &lt;kbd&gt; </a>
+                                <a target="_top" title="HTML5 <keygen> 标签" href="tag-keygen.jsp">
+                                    &lt;keygen&gt; </a>
+                                <a target="_top" title="HTML <label> 标签" href="tag-label.jsp">
+                                    &lt;label&gt; </a>
+                                <a target="_top" title="HTML <legend> 标签" href="tag-legend.jsp">
+                                    &lt;legend&gt; </a>
+                                <a target="_top" title="HTML <li> 标签" href="tag-li.jsp">
+                                    &lt;li&gt; </a>
+                                <a target="_top" title="HTML <link>标签" href="tag-link.jsp">
+                                    &lt;link&gt; </a>
+                                <a target="_top" title="HTML <map> 标签" href="tag-map.jsp">
+                                    &lt;map&gt; </a>
+                                <a target="_top" title="HTML5 <mark> 标签" href="tag-mark.jsp">
+                                    &lt;mark&gt; </a>
+                                <a target="_top" title="HTML  <menu> 标签" href="tag-menu.jsp">
+                                    &lt;menu&gt; </a>
+                                <a target="_top" title="HTML <meta> 标签" href="tag-meta.jsp">
+                                    &lt;meta&gt; </a>
+                                <a target="_top" title="HTML <meter> 标签" href="tag-meter.jsp">
+                                    &lt;meter&gt; </a>
+                                <a target="_top" title="HTML <nav> 标签" href="tag-nav.jsp">
+                                    &lt;nav&gt; </a>
+                                <a target="_top" title="HTML <noframes> 标签" href="tag-noframes.jsp">
+                                    &lt;noframes&gt; </a>
+                                <a target="_top" title="HTML <noscript> 标签" href="tag-noscript.jsp">
+                                    &lt;noscript&gt; </a>
+                                <a target="_top" title="HTML <object> 标签" href="tag-object.jsp">
+                                    &lt;object&gt; </a>
+                                <a target="_top" title="HTML <ol> 标签" href="tag-ol.jsp">
+                                    &lt;ol&gt; </a>
+                                <a target="_top" title="HTML <optgroup> 标签" href="tag-optgroup.jsp">
+                                    &lt;optgroup&gt; </a>
+                                <a target="_top" title="HTML <option> 标签" href="tag-option.jsp">
+                                    &lt;option&gt; </a>
+                                <a target="_top" title="HTML <output> 标签" href="tag-output.jsp">
+                                    &lt;output&gt; </a>
+                                <a target="_top" title="HTML <p> 标签" href="tag-p.jsp">
+                                    &lt;p&gt; </a>
+                                <a target="_top" title="HTML <param> 标签" href="tag-param.jsp">
+                                    &lt;param&gt; </a>
+                                <a target="_top" title="HTML <pre> 标签" href="tag-pre.jsp">
+                                    &lt;pre&gt; </a>
+                                <a target="_top" title="HTML <html> 标签" href="tag-html.jsp">
+                                    &lt;html&gt; </a>
+                                <a target="_top" title="HTML5 <progress> 标签" href="tag-progress.jsp">
+                                    &lt;progress&gt; </a>
+                                <a target="_top" title="HTML <q> 标签" href="tag-q.jsp">
+                                    &lt;q&gt; </a>
+                                <a target="_top" title="HTML <rp> 标签" href="tag-rp.jsp">
+                                    &lt;rp&gt; </a>
+                                <a target="_top" title="HTML <rt> 标签" href="tag-rt.jsp">
+                                    &lt;rt&gt; </a>
+                                <a target="_top" title="HTML <ruby> 标签" href="tag-ruby.jsp">
+                                    &lt;ruby&gt; </a>
+                                <a target="_top" title="HTML <s> 标签" href="tag-s.jsp">
+                                    &lt;s&gt; </a>
+                                <a target="_top" title="HTML <samp> 标签" href="tag-samp.jsp">
+                                    &lt;samp&gt; </a>
+                                <a target="_top" title="HTML <script> 标签" href="tag-script.jsp">
+                                    &lt;script&gt; </a>
+                                <a target="_top" title="HTML <section> 标签" href="tag-section.jsp">
+                                    &lt;section&gt; </a>
+                                <a target="_top" title="HTML <select> 标签" href="tag-select.jsp">
+                                    &lt;select&gt; </a>
+                                <a target="_top" title="HTML <small> 标签" href="tag-small.jsp">
+                                    &lt;small&gt; </a>
+                                <a target="_top" title="HTML <source> 标签" href="tag-source.jsp">
+                                    &lt;source&gt; </a>
+                                <a target="_top" title="HTML <span> 标签" href="tag-span.jsp">
+                                    &lt;span&gt; </a>
+                                <a target="_top" title="HTML <strike> 标签" href="tag-strike.jsp">
+                                    &lt;strike&gt; </a>
+                                <a target="_top" title="HTML <strong> 标签" href="tag-strong.jsp">
+                                    &lt;strong&gt; </a>
+                                <a target="_top" title="HTML <style> 标签" href="tag-style.jsp">
+                                    &lt;style&gt; </a>
+                                <a target="_top" title="HTML <sub> 标签" href="tag-sub.jsp">
+                                    &lt;sub&gt; </a>
+                                <a target="_top" title="HTML <summary> 标签" href="tag-summary.jsp">
+                                    &lt;summary&gt; </a>
+                                <a target="_top" title="HTML <sup> 标签" href="tag-sup.jsp">
+                                    &lt;sup&gt; </a>
+                                <a target="_top" title="HTML <table> 标签" href="tag-table.jsp">
+                                    &lt;table&gt; </a>
+                                <a target="_top" title="HTML <tbody> 标签" href="tag-tbody.jsp">
+                                    &lt;tbody&gt; </a>
+                                <a target="_top" title="HTML <td> 标签" href="tag-td.jsp">
+                                    &lt;td&gt; </a>
+                                <a target="_top" title="HTML <textarea> 标签" href="tag-textarea.jsp">
+                                    &lt;textarea&gt; </a>
+                                <a target="_top" title="HTML <tfoot> 标签" href="tag-tfoot.jsp">
+                                    &lt;tfoot&gt; </a>
+                                <a target="_top" title="HTML <th> 标签" href="tag-th.jsp">
+                                    &lt;th&gt; </a>
+                                <a target="_top" title="HTML <thead> 标签" href="tag-thead.jsp">
+                                    &lt;thead&gt; </a>
+                                <a target="_top" title="HTML <time> 标签" href="tag-time.jsp">
+                                    &lt;time&gt; </a>
+                                <a target="_top" title="HTML <title> 标签" href="tag-title.jsp">
+                                    &lt;title&gt; </a>
+                                <a target="_top" title="HTML <tr> 标签" href="tag-tr.jsp">
+                                    &lt;tr&gt; </a>
+                                <a target="_top" title="HTML <track> 标签" href="tag-track.jsp">
+                                    &lt;track&gt; </a>
+                                <a target="_top" title="HTML <tt> 标签" href="tag-tt.jsp">
+                                    &lt;tt&gt; </a>
+                                <a target="_top" title="HTML <u> 标签" href="tag-u.jsp">
+                                    &lt;u&gt; </a>
+                                <a target="_top" title="HTML <ul> 标签" href="tag-ul.jsp">
+                                    &lt;ul&gt; </a>
+                                <a target="_top" title="HTML <var> 标签" href="tag-var.jsp">
+                                    &lt;var&gt; </a>
+                                <a target="_top" title="HTML <video> 标签" href="tag-video.jsp">
+                                    &lt;video&gt; </a>
+                                <a target="_top" title="HTML <wbr> 标签" href="tag-wbr.jsp">
+                                    &lt;wbr&gt; </a>
+                            </div>
+                        </div>
+                        <%--  <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                              <a class="nav-link px-4 active" role="tab" data-toggle="pill" id="html-2-tab" href="#html-2"
+                                 aria-controls="html-2" aria-selected="true"><span class="mr-2 fab fa-html5 fa-fw"></span> HTML 教程
+                              </a>
+                              <div class="divider"></div>
+                              <a class="nav-link px-4" role="tab" data-toggle="pill" id="html-3-tab" href="#html-3"
+                                 aria-controls="html-3" aria-selected="false"><span class="mr-2 fas fa-stream fa-fw"></span> HTML
+                                  简介
+                              </a>
+                              <div class="divider"></div>
+                              <a class="nav-link px-4" role="tab" data-toggle="pill" id="html-4-tab" href="#html-4"
+                                 aria-controls="html-4" aria-selected="false"><span class="mr-2 fas fa-keyboard fa-fw"></span>
+                                  HTML 编辑器
+                              </a>
+                              <div class="divider"></div>
+                              <a class="nav-link px-4" role="tab" data-toggle="pill" id="html-5-tab" href="#html-5"
+                                 aria-controls="html-5" aria-selected="false"><span class="mr-2 fas fa-tag fa-fw"></span> HTML 基础
+                              </a>
+                              <div class="divider"></div>
+                              <a class="nav-link px-4" role="tab" data-toggle="pill" id="html-6-tab" href="#html-6"
+                                 aria-controls="html-6" aria-selected="false"><span class="mr-2 fab fa-elementor fa-fw"></span>
+                                  HTML 元素
+                              </a>
+                              <div class="divider"></div>
+                              <a class="nav-link px-4" role="tab" data-toggle="pill" id="html-7-tab" href="#html-7"
+                                 aria-controls="html-7" aria-selected="false"><span class="mr-2 fas fas fa-percent fa-fw"></span>
+                                  HTML 属性
+                              </a>
+                              <div class="divider"></div>
+                              <a class="nav-link px-4" role="tab" data-toggle="pill" id="html-8-tab" href="#html-8"
+                                 aria-controls="html-8" aria-selected="false"><span class="mr-2 fas fa-quote-left fa-fw"></span>
+                                  HTML 标题
+                              </a>
+                              <div class="divider"></div>
+                              <a class="nav-link px-4" role="tab" data-toggle="pill" id="html-9-tab" href="#html-9"
+                                 aria-controls="html-9" aria-selected="false"><span class="mr-2 fas fa-outdent fa-fw"></span> HTML
+                                  段落
+                              </a>
+                              <div class="divider"></div>
+                              <a class="nav-link px-4" role="tab" data-toggle="pill" id="html-10-tab" href="#html-10"
+                                 aria-controls="html-10" aria-selected="false"><span class="mr-2 fas fa-text-height fa-fw"></span>
+                                  HTML
+                                  文本格式化
+                              </a>
+                              <div class="divider"></div>
+                              <a class="nav-link px-4" role="tab" data-toggle="pill" id="html-11-tab" href="#html-11"
+                                 aria-controls="html-11" aria-selected="false"><span class="mr-2 fas fa-link fa-fw"></span> HTML
+                                  链接
+                              </a>
+                              <div class="divider"></div>
+                              <a class="nav-link px-4" role="tab" data-toggle="pill" id="html-12-tab" href="#html-12"
+                                 aria-controls="html-12" aria-selected="false"><span class="mr-2 fas fa-heading fa-fw"></span>
+                                  HTML 头部
+                              </a>
+                              <div class="divider"></div>
+                              <a class="nav-link px-4" role="tab" data-toggle="pill" id="html-13-tab" href="#html-13"
+                                 aria-controls="html-13" aria-selected="false"><span class="mr-2 fab fa-css3 fa-fw"></span> HTML
+                                  CSS
+                              </a>
+                              <div class="divider"></div>
+                              <a class="nav-link px-4" role="tab" data-toggle="pill" id="html-14-tab" href="#html-14" onclick="window.location.href='html/html-images.jsp'"
+                                 aria-controls="html-14" aria-selected="false"><span
+                                      class="mr-2 	far fa-file-image fa-fw"></span> HTML 图像
+                              </a>
+                              <div class="divider"></div>
+                              <a class="nav-link px-4" role="tab" data-toggle="pill" id="html-15-tab" href="#html-15"
+                                 aria-controls="html-15" aria-selected="false"><span
+                                      class="mr-2 fas fa-window-maximize fa-fw"></span> HTML 表格
+                              </a>
+                              <div class="divider"></div>
+                              <a class="nav-link px-4" role="tab" data-toggle="pill" id="html-16-tab" href="#html-16"
+                                 aria-controls="html-16" aria-selected="false"><span class="mr-2 fas fa-list fa-fw"></span> HTML
+                                  列表
+                              </a>
+                              <div class="divider"></div>
+                              <a class="nav-link px-4" role="tab" data-toggle="pill" id="html-17-tab" href="#html-17"
+                                 aria-controls="html-17" aria-selected="false"><span
+                                      class="mr-2 fas fa-object-group fa-fw"></span> HTML 区块
+                              </a>
+                              <div class="divider"></div>
+                              <a class="nav-link px-4" role="tab" data-toggle="pill" id="html-18-tab" href="#html-18"
+                                 aria-controls="html-18" aria-selected="false"><span
+                                      class="mr-2 fas fa-bezier-curve fa-fw"></span> HTML 布局
+                              </a>
+                              <div class="divider"></div>
+                              <a class="nav-link px-4" role="tab" data-toggle="pill" id="html-19-tab" href="#html-18"
+                                 aria-controls="html-19" aria-selected="false"><span class="mr-2 fas fa-table fa-fw"></span> HTML
+                                  表单
+                              </a>
+                              <div class="divider"></div>
+                              <a class="nav-link px-4" role="tab" data-toggle="pill" id="html-20-tab" href="#html-20"
+                                 aria-controls="html-20" aria-selected="false"><span class="mr-2 fas fa-laptop-code fa-fw"></span>
+                                  HTML 框架
+                              </a>
+                              <div class="divider"></div>
+                          </div>
+                          --%>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8 ftco-animate d-flex mt-5 pt-5">
+                <div class="col middle-column">
+
+
+                    <div class="article">
+                        <div class="article-heading-ad" style="display: none;">
+
+                        </div>
+                        <div class="previous-next-links">
+                            <br></div>
+                        <div class="article-body">
+
+                            <div class="article-intro" id="content">
+
+                                <h1>HTML 参考手册- <span class="color_h1">(HTML5 标准)</span>
+                                </h1>
+
+                                <hr>
+                                <h2>功能排序</h2>
+                                <p><span class="new" style="float:left;">New</span>&nbsp;: HTML5 新标签</p>
+
+                                <table class="reference">
+                                    <tbody>
+                                    <tr>
+                                        <th align="left" width="25%">标签</th>
+                                        <th align="left" width="75%">描述</th>
+                                    </tr>
+                                    <tr>
+                                        <td><b>基础</b></td>
+                                        <td>&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="tag-doctype.html">&lt;!DOCTYPE&gt;</a>&nbsp;
+                                        </td>
+                                        <td>定义文档类型。</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="tag-html.html">&lt;html&gt;</a></td>
+                                        <td>定义一个 HTML 文档</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="tag-title.html">&lt;title&gt;</a></td>
+                                        <td>为文档定义一个标题</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="tag-body.html">&lt;body&gt;</a></td>
+                                        <td>定义文档的主体</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="tag-hn.html">&lt;h1&gt; to &lt;h6&gt;</a></td>
+                                        <td>定义 HTML 标题</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="tag-p.html">&lt;p&gt;</a></td>
+                                        <td>定义一个段落</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="tag-br.html">&lt;br&gt;</a></td>
+                                        <td>定义简单的折行。</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="tag-hr.html">&lt;hr&gt;</a></td>
+                                        <td>定义水平线。</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="tag-comment.html">&lt;!--...--&gt;</a></td>
+                                        <td>定义一个注释</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>格式</b></td>
+                                        <td>&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a class="notsupported" href="tag-acronym.html">&lt;acronym&gt;</a></td>
+                                        <td>
+                                            <span class="deprecated">HTML5不再支持。</span> 定义只取首字母的缩写。
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="tag-abbr.html">&lt;abbr&gt;</a></td>
+                                        <td>定义一个缩写。</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="tag-address.html">&lt;address&gt;</a></td>
+                                        <td>定义文档作者或拥有者的联系信息。</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="tag-b.html">&lt;b&gt;</a></td>
+                                        <td>定义粗体文本。</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="tag-bdi.html">&lt;bdi&gt;</a><span class="new">New</span>
+                                        </td>
+                                        <td>允许您设置一段文本，使其脱离其父元素的文本方向设置。</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="tag-bdo.html">&lt;bdo&gt;</a></td>
+                                        <td>定义文本的方向。</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a class="notsupported" href="tag-big.html">&lt;big&gt;</a></td>
+                                        <td>
+                                            <span class="deprecated">HTML5不再支持。</span> 定义大号文本。
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="tag-blockquote.html">&lt;blockquote&gt;</a></td>
+                                        <td>定义块引用。</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a class="notsupported" href="tag-center.html">&lt;center&gt;</a></td>
+                                        <td>
+                                            <span class="deprecated">HTML5不再支持。 HTML 4.01 已废弃。</span>定义居中文本。
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="tag-cite.html">&lt;cite&gt;</a></td>
+                                        <td>定义引用(citation)。</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="tag-code.html">&lt;code&gt;</a></td>
+                                        <td>定义计算机代码文本。</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="tag-del.html">&lt;del&gt;</a></td>
+                                        <td>定义被删除文本。</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="tag-dfn.html">&lt;dfn&gt;</a></td>
+                                        <td>定义定义项目。</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="tag-em.html">&lt;em&gt;</a></td>
+                                        <td>定义强调文本。&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a class="notsupported" href="tag-font.html">&lt;font&gt;</a></td>
+                                        <td>
+                                            <span class="deprecated">HTML5不再支持。 HTML 4.01 已废弃。</span> 定义文本的字体、尺寸和颜色
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="tag-i.html">&lt;i&gt;</a></td>
+                                        <td>定义斜体文本。</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="tag-ins.html">&lt;ins&gt;</a></td>
+                                        <td>定义被插入文本。</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="tag-kbd.html">&lt;kbd&gt;</a></td>
+                                        <td>定义键盘文本。</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="tag-mark.html">&lt;mark&gt;</a><span class="new">New</span>
+                                        </td>
+                                        <td>定义带有记号的文本。</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="tag-meter.html">&lt;meter&gt;</a><span class="new">New</span>
+                                        </td>
+                                        <td>定义度量衡。仅用于已知最大和最小值的度量。</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="tag-pre.html">&lt;pre&gt;</a></td>
+                                        <td>定义预格式文本</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="tag-progress.html">&lt;progress&gt;</a><span class="new">New</span>
+                                        </td>
+                                        <td>定义运行中的任务进度（进程）。</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="tag-q.html">&lt;q&gt;</a></td>
+                                        <td>定义短的引用。</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="tag-rp.html">&lt;rp&gt;</a><span class="new">New</span>
+                                        </td>
+                                        <td>定义不支持 ruby 元素的浏览器所显示的内容。</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="tag-rt.html">&lt;rt&gt;</a><span class="new">New</span>
+                                        </td>
+                                        <td>定义字符（中文注音或字符）的解释或发音。</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="tag-ruby.html">&lt;ruby&gt;</a><span class="new">New</span>
+                                        </td>
+                                        <td>定义 ruby 注释（中文注音或字符）。</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="tag-s.html">&lt;s&gt;</a></td>
+                                        <td>定义加删除线的文本。</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="tag-samp.html">&lt;samp&gt;</a></td>
+                                        <td>定义计算机代码样本。</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="tag-small.html">&lt;small&gt;</a></td>
+                                        <td>定义小号文本。</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a class="notsupported" href="tag-strike.html">&lt;strike&gt;</a></td>
+                                        <td>
+                                            <span class="deprecated">HTML5不再支持。 HTML 4.01 已废弃。</span> 定义加删除线的文本。
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="tag-strong.html">&lt;strong&gt;</a></td>
+                                        <td>定义语气更为强烈的强调文本。</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="tag-sub.html">&lt;sub&gt;</a></td>
+                                        <td>定义下标文本。</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="tag-sup.html">&lt;sup&gt;</a></td>
+                                        <td>定义上标文本。</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="tag-time.html">&lt;time&gt;</a><span class="new">New</span>
+                                        </td>
+                                        <td>定义一个日期/时间</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a class="notsupported" href="tag-tt.html">&lt;tt&gt;</a></td>
+                                        <td>
+                                            <span class="deprecated">HTML5不再支持。</span> 定义打字机文本。
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="tag-u.html">&lt;u&gt;</a></td>
+                                        <td>定义下划线文本。</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="tag-var.html">&lt;var&gt;</a></td>
+                                        <td>定义文本的变量部分。</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="tag-wbr.html">&lt;wbr&gt;</a><span class="new">New</span>
+                                        </td>
+                                        <td>规定在文本中的何处适合添加换行符。</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>表单</b></td>
+                                        <td>&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="tag-form.html">&lt;form&gt;</a></td>
+                                        <td>定义一个 HTML 表单，用于用户输入。</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="tag-input.html">&lt;input&gt;</a></td>
+                                        <td>定义一个输入控件</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="tag-textarea.html">&lt;textarea&gt;</a></td>
+                                        <td>定义多行的文本输入控件。</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="tag-button.html">&lt;button&gt;</a></td>
+                                        <td>定义按钮。</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="tag-select.html">&lt;select&gt;</a></td>
+                                        <td>定义选择列表（下拉列表）。</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="tag-optgroup.html">&lt;optgroup&gt;</a></td>
+                                        <td>定义选择列表中相关选项的组合。</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="tag-option.html">&lt;option&gt;</a></td>
+                                        <td>定义选择列表中的选项。</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="tag-label.html">&lt;label&gt;</a></td>
+                                        <td>定义 input 元素的标注。</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="tag-fieldset.html">&lt;fieldset&gt;</a></td>
+                                        <td>定义围绕表单中元素的边框。</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="tag-legend.html">&lt;legend&gt;</a></td>
+                                        <td>定义 fieldset 元素的标题。</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="tag-datalist.html">&lt;datalist&gt;</a><span class="new">New</span>
+                                        </td>
+                                        <td>规定了 input 元素可能的选项列表。</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="tag-keygen.html">&lt;keygen&gt;</a><span class="new">New</span>
+                                        </td>
+                                        <td>规定用于表单的密钥对生成器字段。</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="tag-output.html">&lt;output&gt;</a><span class="new">New</span>
+                                        </td>
+                                        <td>定义一个计算的结果</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>框架</b></td>
+                                        <td>&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a class="notsupported" href="tag-frame.html">&lt;frame&gt;</a></td>
+                                        <td><span class="deprecated">HTML5不再支持。</span> 定义框架集的窗口或框架。</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a class="notsupported" href="tag-frameset.html">&lt;frameset&gt;</a></td>
+                                        <td>
+                                            <span class="deprecated">HTML5不再支持。</span>定义框架集。
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><a class="notsupported" href="tag-noframes.html">&lt;noframes&gt;</a></td>
+                                        <td>
+                                            <span class="deprecated">HTML5不再支持。</span> 定义针对不支持框架的用户的替代内容。
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="tag-iframe.html">&lt;iframe&gt;</a></td>
+                                        <td>定义内联框架。</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>图像</b></td>
+                                        <td>&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="tag-img.html">&lt;img&gt;</a></td>
+                                        <td>定义图像。</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="tag-map.html">&lt;map&gt;</a></td>
+                                        <td>定义图像映射。</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="tag-area.html">&lt;area&gt;</a></td>
+                                        <td>定义图像地图内部的区域。</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="tag-canvas.html">&lt;canvas&gt;</a><span class="new">New</span>
+                                        </td>
+                                        <td>通过脚本（通常是 JavaScript）来绘制图形（比如图表和其他图像）。</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="tag-figcaption.html">&lt;figcaption&gt;</a><span
+                                                class="new">New</span>
+                                        </td>
+                                        <td>定义一个 caption for a &lt;figure&gt; element</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="tag-figure.html">&lt;figure&gt;</a><span class="new">New</span>
+                                        </td>
+                                        <td>figure 标签用于对元素进行组合。</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Audio/Video</b></td>
+                                        <td>&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="tag-audio.html">&lt;audio&gt;</a><span class="new">New</span>
+                                        </td>
+                                        <td>定义声音，比如音乐或其他音频流。</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="tag-source.html">&lt;source&gt;</a><span class="new">New</span>
+                                        </td>
+                                        <td>定义media元素 (&lt;video&gt; 和 &lt;audio&gt;)的媒体资源。media</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="tag-track.html">&lt;track&gt;</a><span class="new">New</span>
+                                        </td>
+                                        <td>为媒体(&lt;video&gt; 和 &lt;audio&gt;)元素定义外部文本轨道。</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="tag-video.html">&lt;video&gt;</a><span class="new">New</span>
+                                        </td>
+                                        <td>定义一个音频或者视频</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>链接</b></td>
+                                        <td>&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="tag-a.html">&lt;a&gt;</a></td>
+                                        <td>定义一个链接</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="tag-link.html">&lt;link&gt;</a></td>
+                                        <td>定义文档与外部资源的关系。</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="tag-nav.html">&lt;nav&gt;</a><span class="new">New</span>
+                                        </td>
+                                        <td>定义导航链接</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>列表</b></td>
+                                        <td>&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="tag-ul.html">&lt;ul&gt;</a></td>
+                                        <td>定义一个无序列表</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="tag-ol.html">&lt;ol&gt;</a></td>
+                                        <td>定义一个有序列表</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="tag-li.html">&lt;li&gt;</a></td>
+                                        <td>定义一个列表项</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a class="notsupported" href="tag-dir.html">&lt;dir&gt;</a></td>
+                                        <td>
+                                            <span class="deprecated">HTML5不再支持。 HTML 4.01 已废弃。</span> 定义目录列表。
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="tag-dl.html">&lt;dl&gt;</a></td>
+                                        <td>定义一个定义列表</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="tag-dt.html">&lt;dt&gt;</a></td>
+                                        <td>定义一个定义定义列表中的项目。</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="tag-dd.html">&lt;dd&gt;</a></td>
+                                        <td>定义定义列表中项目的描述。</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="tag-menu.html">&lt;menu&gt;</a></td>
+                                        <td>定义菜单列表。</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="tag-command.html">&lt;command&gt;</a><span class="new">New</span>
+                                        </td>
+                                        <td>定义用户可能调用的命令（比如单选按钮、复选框或按钮）。</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>表格</b></td>
+                                        <td>&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="tag-table.html">&lt;table&gt;</a></td>
+                                        <td>定义一个表格</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="tag-caption.html">&lt;caption&gt;</a></td>
+                                        <td>定义表格标题。</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="tag-th.html">&lt;th&gt;</a></td>
+                                        <td>定义表格中的表头单元格。</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="tag-tr.html">&lt;tr&gt;</a></td>
+                                        <td>定义表格中的行。</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="tag-td.html">&lt;td&gt;</a></td>
+                                        <td>定义表格中的单元。</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="tag-thead.html">&lt;thead&gt;</a></td>
+                                        <td>定义表格中的表头内容。</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="tag-tbody.html">&lt;tbody&gt;</a></td>
+                                        <td>定义表格中的主体内容。</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="tag-tfoot.html">&lt;tfoot&gt;</a></td>
+                                        <td>定义表格中的表注内容（脚注）。</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="tag-col.html">&lt;col&gt;</a></td>
+                                        <td>定义表格中一个或多个列的属性值。</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="tag-colgroup.html">&lt;colgroup&gt;</a></td>
+                                        <td>定义表格中供格式化的列组。</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>样式/节</b></td>
+                                        <td>&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="tag-style.html">&lt;style&gt;</a></td>
+                                        <td>定义文档的样式信息。</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="tag-div.html">&lt;div&gt;</a></td>
+                                        <td>定义文档中的节。</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="tag-span.html">&lt;span&gt;</a></td>
+                                        <td>定义文档中的节。</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="tag-header.html">&lt;header&gt;</a><span class="new">New</span>
+                                        </td>
+                                        <td>定义一个文档头部部分</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="tag-footer.html">&lt;footer&gt;</a><span class="new">New</span>
+                                        </td>
+                                        <td>定义一个文档底部</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="tag-section.html">&lt;section&gt;</a><span class="new">New</span>
+                                        </td>
+                                        <td>定义了文档的某个区域</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="tag-article.html">&lt;article&gt;</a><span class="new">New</span>
+                                        </td>
+                                        <td>定义一个文章内容</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="tag-aside.html">&lt;aside&gt;</a><span class="new">New</span>
+                                        </td>
+                                        <td>定义其所处内容之外的内容。</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="tag-details.html">&lt;details&gt;</a><span class="new">New</span>
+                                        </td>
+                                        <td>定义了用户可见的或者隐藏的需求的补充细节。</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="tag-dialog.html">&lt;dialog&gt;</a><span class="new">New</span>
+                                        </td>
+                                        <td>定义一个对话框或者窗口</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="tag-summary.html">&lt;summary&gt;</a><span class="new">New</span>
+                                        </td>
+                                        <td>定义一个可见的标题。 当用户点击标题时会显示出详细信息。</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>元信息</b></td>
+                                        <td>&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="tag-head.html">&lt;head&gt;</a></td>
+                                        <td>定义关于文档的信息</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="tag-meta.html">&lt;meta&gt;</a></td>
+                                        <td>定义关于 HTML 文档的元信息。</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="tag-base.html">&lt;base&gt;</a></td>
+                                        <td>定义页面中所有链接的默认地址或默认目标。</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a class="notsupported" href="tag-basefont.html">&lt;basefont&gt;</a></td>
+                                        <td>
+                                            <span class="deprecated">HTML5不再支持。 HTML 4.01 已废弃。</span>
+                                            定义页面中文本的默认字体、颜色或尺寸。
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>程序</b></td>
+                                        <td>&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="tag-script.html">&lt;script&gt;</a></td>
+                                        <td>定义客户端脚本。</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="tag-noscript.html">&lt;noscript&gt;</a></td>
+                                        <td>定义针对不支持客户端脚本的用户的替代内容。</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a class="notsupported" href="tag-applet.html">&lt;applet&gt;</a></td>
+                                        <td>
+                                            <span class="deprecated">HTML5不再支持。 HTML 4.01 已废弃。</span> 定义嵌入的 applet。
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="tag-embed.html">&lt;embed&gt;</a><span class="new">New</span>
+                                        </td>
+                                        <td>定义了一个容器，用来嵌入外部应用或者互动程序（插件）。</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="tag-object.html">&lt;object&gt;</a></td>
+                                        <td>定义嵌入的对象。</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="tag-param.html">&lt;param&gt;</a></td>
+                                        <td>定义对象的参数。</td>
+                                    </tr>
+                                    </tbody>
+                                </table>                <!-- 其他扩展 -->
+
+                            </div>
+
+                        </div>
+
+                        <div class="previous-next-links">
+                            <br></div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- MODAL -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header"><h3 class="modal-title" id="myModalLabel">登录</h3>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <%--                <form action= method="post">--%>
+                <div class="form-group">
+                    <label class="form-check-label" for="username">&ensp;用户id</label>
+                    <input type="text" placeholder="username..." class="form-control" id="username" name="username">
+                </div>
+                <div class="form-group">
+                    <label class="form-check-label" for="password">&ensp;密码</label>
+                    <input type="password" placeholder="password..." class="form-control" id="password" name="password">
+                </div>
+                <button class="btn btn-primary" onclick="login()">确认</button>
+                <%--                </form>--%>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<%--java script--%>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/jquery-migrate-3.0.1.min.js"></script>
+<script src="../js/popper.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/jquery.easing.1.3.js"></script>
+<script src="../js/jquery.waypoints.min.js"></script>
+<script src="../js/jquery.stellar.min.js"></script>
+<script src="../js/owl.carousel.min.js"></script>
+<script src="../js/jquery.magnific-popup.min.js"></script>
+<script src="../js/aos.js"></script>
+<script src="../js/jquery.animateNumber.min.js"></script>
+<script src="../js/scrollax.min.js"></script>
+<script src="../js/google-map.js"></script>
+
+<script src="../js/main.js"></script>
+
+</body>
+</html>
