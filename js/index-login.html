@@ -1,227 +1,213 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Meridian
-  Date: 2019/6/4
-  Time: 12:11
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="zh_cn">
 <head>
-    <title>Ordeal</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link href="css/fontNunitoSans.css" rel="stylesheet">
-    <link href="https://cdn.remixicon.com/releases/v1.2.2/remixicon.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
-          integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
-    <link rel="stylesheet" href="css/animate.css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="css/magnific-popup.css">
-    <link rel="stylesheet" href="css/aos.css">
-    <link rel="stylesheet" href="css/ionicons.min.css">
-    <link rel="stylesheet" href="css/flaticon.css">
-    <link rel="stylesheet" href="css/icomoon.css">
-    <link rel="stylesheet" href="css/skills.css">
-    <link rel="stylesheet" href="css/style.css">
-    <script src="js/justgage/modernizr-3.6.0.min.js"></script>
-    <script src="js/jquery.min.js"></script>
+<title>Ordeal</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="css/fontNunitoSans.css" rel="stylesheet">
+<link href="https://cdn.remixicon.com/releases/v1.2.2/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+<link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
+<link rel="stylesheet" href="css/animate.css">
+<link rel="stylesheet" href="css/owl.carousel.min.css">
+<link rel="stylesheet" href="css/owl.theme.default.min.css">
+<link rel="stylesheet" href="css/magnific-popup.css">
+<link rel="stylesheet" href="css/aos.css">
+<link rel="stylesheet" href="css/ionicons.min.css">
+<link rel="stylesheet" href="css/flaticon.css">
+<link rel="stylesheet" href="css/icomoon.css">
+<link rel="stylesheet" href="css/skills.css">
+<link rel="stylesheet" href="css/style.css">
+<script src="js/justgage/modernizr-3.6.0.min.js"></script>
+<script src="js/jquery.min.js"></script>
 
 
 </head>
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
-<%--导航栏--%>
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target"
-     id="ftco-navbar">
-    <div class="container">
-        <a class="navbar-brand" href="index.jsp">Or<span>deal</span></a>
-        <button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse"
-                data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="oi oi-menu"></span> Menu
-        </button>
-        <div class="collapse navbar-collapse" id="ftco-nav">
-            <ul class="navbar-nav nav ml-auto" style="align-items: baseline">
-                <li class="nav-item">
-                    <a href=""
-                       class="nav-link">
-                        <span>主页</span>
-                    </a>
-                </li>
-                <li class="nav-item"><a href="" class="nav-link dropdown-toggle" data-toggle="dropdown">HTML</a>
-                    <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" href="html-main.jsp">HTML 教程</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="html/html-examples.jsp">HTML 实例</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="tags/html-reference.jsp">HTML 参考手册</a>
-                    </div>
-                </li>
-                <li class="nav-item"><a href="" class="nav-link dropdown-toggle" data-toggle="dropdown">CSS</a>
-                    <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" href="css-main.jsp">CSS 教程</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">CSS 实例</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">CSS 参考手册</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">CSS 响应式设计</a>
-                    </div>
-                </li>
-                <li class="nav-item"><a href="" class="nav-link dropdown-toggle" data-toggle="dropdown">JavaScript</a>
-                    <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" href="#">Javascript 教程</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">JS 函数</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">JS HTML DOM</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">JS 高级教程</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">JS 浏览器BOM</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">JS 库</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">JS 实例</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">JS 参考手册</a>
-                    </div>
-                </li>
-                <li class="nav-item"><a href="note-main.jsp" class="nav-link"><span>笔记</span></a></li>
-                <%--下拉菜单--%>
-                <li class="nav-item"><a href="share-main.jsp" class="nav-link"><span>模版</span></a></li>
-                <%//--下拉菜单--%>
-                <li class="nav-item"><a href="exam-main.jsp" class="nav-link"><span>测验</span></a></li>
-                <li class="nav-item">
-                    <div class="col-1"></div>
-                </li>
-                <li class="nav-item">
-                    <button class="btn btn-outline-dark px-4 py-2" data-toggle="modal" data-target="#myModal"
-                            id="loginbtn" style="">登录
-                    </button>
-                </li>
-            </ul>
-        </div>
-    </div>
+id="ftco-navbar">
+<div class="container">
+<a class="navbar-brand" href="index.html">Or<span>deal</span></a>
+<button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse"
+data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+<span class="oi oi-menu"></span> Menu
+</button>
+<div class="collapse navbar-collapse" id="ftco-nav">
+<ul class="navbar-nav nav ml-auto" style="align-items: baseline">
+<li class="nav-item">
+<a href=""
+class="nav-link">
+<span>主页</span>
+</a>
+</li>
+<li class="nav-item"><a href="" class="nav-link dropdown-toggle" data-toggle="dropdown">HTML</a>
+<div class="dropdown-menu dropdown-menu-right">
+<a class="dropdown-item" href="html-main.html">HTML 教程</a>
+<div class="dropdown-divider"></div>
+<a class="dropdown-item" href="html/html-examples.html">HTML 实例</a>
+<div class="dropdown-divider"></div>
+<a class="dropdown-item" href="tags/html-reference.html">HTML 参考手册</a>
+</div>
+</li>
+<li class="nav-item"><a href="" class="nav-link dropdown-toggle" data-toggle="dropdown">CSS</a>
+<div class="dropdown-menu dropdown-menu-right">
+<a class="dropdown-item" href="css-main.html">CSS 教程</a>
+<div class="dropdown-divider"></div>
+<a class="dropdown-item" href="#">CSS 实例</a>
+<div class="dropdown-divider"></div>
+<a class="dropdown-item" href="#">CSS 参考手册</a>
+<div class="dropdown-divider"></div>
+<a class="dropdown-item" href="#">CSS 响应式设计</a>
+</div>
+</li>
+<li class="nav-item"><a href="" class="nav-link dropdown-toggle" data-toggle="dropdown">JavaScript</a>
+<div class="dropdown-menu dropdown-menu-right">
+<a class="dropdown-item" href="#">Javascript 教程</a>
+<div class="dropdown-divider"></div>
+<a class="dropdown-item" href="#">JS 函数</a>
+<div class="dropdown-divider"></div>
+<a class="dropdown-item" href="#">JS HTML DOM</a>
+<div class="dropdown-divider"></div>
+<a class="dropdown-item" href="#">JS 高级教程</a>
+<div class="dropdown-divider"></div>
+<a class="dropdown-item" href="#">JS 浏览器BOM</a>
+<div class="dropdown-divider"></div>
+<a class="dropdown-item" href="#">JS 库</a>
+<div class="dropdown-divider"></div>
+<a class="dropdown-item" href="#">JS 实例</a>
+<div class="dropdown-divider"></div>
+<a class="dropdown-item" href="#">JS 参考手册</a>
+</div>
+</li>
+<li class="nav-item"><a href="note-main.html" class="nav-link"><span>笔记</span></a></li>
+<li class="nav-item"><a href="share-main.html" class="nav-link"><span>模版</span></a></li>
+<li class="nav-item"><a href="exam-main.html" class="nav-link"><span>测验</span></a></li>
+<li class="nav-item">
+<div class="col-1"></div>
+</li>
+<li class="nav-item">
+<button class="btn btn-outline-dark px-4 py-2" data-toggle="modal" data-target="#myModal"
+id="loginbtn" style="">登录
+</button>
+</li>
+</ul>
+</div>
+</div>
 </nav>
-<%--//导航栏--%>
 
 <div class="inner-content ftco-counter" style="padding-top: 40px">
-    <div class="row">
-        <div class="col-md-1"></div>
+<div class="row">
+<div class="col-md-1"></div>
 
-        <div class="col-md-5 first-one">
-            <div class="first-one-inner lost">
-                <div class="here">
-                    <div class="here-bottom">
-                        <div class="row">
-                            <div class="col-sm-6" style="border-right: 2px dashed #fafafa">
-                                <img src="images/bg-ex.jpg" alt="">
-                                <h4>${sname}</h4>
-                                <h6>Student</h6>
-                                <br>
-                            </div>
-                            <div class="col-sm-6 text-left pl-5" style="font-weight: 100">
-                                <br><br>
-                                <h6 class="pl-5">学习方向：${courses} </h6>
-                                <h6 class="pl-5">笔记条数：${noteNumber} 条</h6>
-                                <h6 class="pl-5">贡献模版：${workNumber} 个</h6>
-                            </div>
+<div class="col-md-5 first-one">
+<div class="first-one-inner lost">
+<div class="here">
+<div class="here-bottom">
+<div class="row">
+<div class="col-sm-6" style="border-right: 2px dashed #fafafa">
+<img src="images/bg-ex.jpg" alt="">
+<h4>${sname}</h4>
+<h6>Student</h6>
+<br>
+</div>
+<div class="col-sm-6 text-left pl-5" style="font-weight: 100">
+<br><br>
+<h6 class="pl-5">学习方向：${courses} </h6>
+<h6 class="pl-5">笔记条数：${noteNumber} 条</h6>
+<h6 class="pl-5">贡献模版：${workNumber} 个</h6>
+</div>
 
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--menu-->
-            <div class="mid-menu">
-                <ul class="effct1" style="display: contents; display: ruby-text-container;">
-                    <li><a href="note-main.jsp">笔记</a></li>
-                    <li><a href="share-main.jsp">模板</a></li>
-                    <li><a href="exam-main.jsp">去测验</a></li>
-                    <li><a href="html-main.jsp">去学习</a></li>
-                    <li><a href="logout.do">退出登录</a></li>
+</div>
+</div>
+</div>
+</div>
+<!--menu-->
+<div class="mid-menu">
+<ul class="effct1" style="display: contents; display: ruby-text-container;">
+<li><a href="note-main.html">笔记</a></li>
+<li><a href="share-main.html">模板</a></li>
+<li><a href="exam-main.html">去测验</a></li>
+<li><a href="html-main.html">去学习</a></li>
+<li><a href="logout.do">退出登录</a></li>
 
-                    <li class="lost"><a class="disabled" style="color: transparent">aa</a></li>
-                </ul>
-            </div>
-        </div>
+<li class="lost"><a class="disabled" style="color: transparent">aa</a></li>
+</ul>
+</div>
+</div>
 
 
-        <div class="col-md-5">
+<div class="col-md-5">
 
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="card" style="border-radius: 2em; width: 90%; margin: 1em 3em;">
-                        <div class="card-body text-center">
-                            <h4 class="card-title"> HTML 学习进度 </h4>
-                            <a href="javascript:void(0);" id="g8_refresh" class="btn btn-sm btn-success">Refresh</a>
-                            &emsp;<a href="javascript:void(0);" id="g8_reset" class="btn btn-sm btn-warning">Reset</a>
-                            <div id="g8" class="gauge-chart"></div>
-                            <a href="html-main.jsp" class="pl-4">去继续学习 <span class="mr-3 flaticon-suntour-right"></span></a>
-                        </div>
-                    </div>
-                    <div class="card" style="border-radius: 2em; width: 90%; margin: 1em 3em;">
-                        <div class="card-body text-center">
-                            <h4 class="card-title"> CSS 学习进度</h4>
-                            <a href="javascript:void(0);" id="g8_02_refresh" class="btn btn-sm btn-success">Refresh</a>
-                            &emsp;<a href="javascript:void(0);" id="g8_02_reset" class="btn btn-sm btn-warning">Reset</a>
-                            <div id="g8_02" class="gauge-chart"></div>
-                            <br>
-                            <a href="css-main.jsp" class="pl-4"> 去继续学习 <span class="mr-3 flaticon-suntour-right"></span>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="card" style="border-radius: 2em; width: 90%; margin: 1em 3em;">
-                        <div class="card-body text-center">
-                            <h4 class="card-title"> Java Script 学习进度</h4>
-                            <a href="javascript:void(0);" id="g8_03_refresh" class="btn btn-sm btn-success">Refresh</a>
-                            &emsp;<a href="javascript:void(0);" id="g8_03_reset" class="btn btn-sm btn-warning">Reset</a>
-                            <div id="g8_03" class="gauge-chart"></div>
-                            <br>
-                            <a href="js-main.jsp" class="pl-4"> 去继续学习 <span class="mr-3 flaticon-suntour-right"></span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div><br><br><br>
-        </div>
+<div class="row">
+<div class="col-lg-12">
+<div class="card" style="border-radius: 2em; width: 90%; margin: 1em 3em;">
+<div class="card-body text-center">
+<h4 class="card-title"> HTML 学习进度 </h4>
+<a href="javascript:void(0);" id="g8_refresh" class="btn btn-sm btn-success">Refresh</a>
+&emsp;<a href="javascript:void(0);" id="g8_reset" class="btn btn-sm btn-warning">Reset</a>
+<div id="g8" class="gauge-chart"></div>
+<a href="html-main.html" class="pl-4">去继续学习 <span class="mr-3 flaticon-suntour-right"></span></a>
+</div>
+</div>
+<div class="card" style="border-radius: 2em; width: 90%; margin: 1em 3em;">
+<div class="card-body text-center">
+<h4 class="card-title"> CSS 学习进度</h4>
+<a href="javascript:void(0);" id="g8_02_refresh" class="btn btn-sm btn-success">Refresh</a>
+&emsp;<a href="javascript:void(0);" id="g8_02_reset" class="btn btn-sm btn-warning">Reset</a>
+<div id="g8_02" class="gauge-chart"></div>
+<br>
+<a href="css-main.html" class="pl-4"> 去继续学习 <span class="mr-3 flaticon-suntour-right"></span>
+</a>
+</div>
+</div>
+<div class="card" style="border-radius: 2em; width: 90%; margin: 1em 3em;">
+<div class="card-body text-center">
+<h4 class="card-title"> Java Script 学习进度</h4>
+<a href="javascript:void(0);" id="g8_03_refresh" class="btn btn-sm btn-success">Refresh</a>
+&emsp;<a href="javascript:void(0);" id="g8_03_reset" class="btn btn-sm btn-warning">Reset</a>
+<div id="g8_03" class="gauge-chart"></div>
+<br>
+<a href="js-main.html" class="pl-4"> 去继续学习 <span class="mr-3 flaticon-suntour-right"></span>
+</a>
+</div>
+</div>
+</div>
+</div><br><br><br>
+</div>
 
-        <div class="col-md-1"></div>
-    </div>
+<div class="col-md-1"></div>
+</div>
 </div>
 
 
 <script src="js/cbpFWTabs.js"></script>
 <script>
-    new CBPFWTabs(document.getElementById('tabs'));
+new CBPFWTabs(document.getElementById('tabs'));
 </script>
 
 <!-- MODAL -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header"><h3 class="modal-title" id="myModalLabel">登录</h3>
-                <button type="button" class="close" data-dismiss="modal">
-                    <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <%--                <form action= method="post">--%>
-                <div class="form-group">
-                    <label class="form-check-label" for="username">&ensp;用户id</label>
-                    <input type="text" placeholder="username..." class="form-control" id="username" name="username">
-                </div>
-                <div class="form-group">
-                    <label class="form-check-label" for="password">&ensp;密码</label>
-                    <input type="password" placeholder="password..." class="form-control" id="password" name="password">
-                </div>
-                <button class="btn btn-primary" onclick="login()">确认</button>
-                <%--                </form>--%>
-            </div>
-        </div>
-    </div>
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header"><h3 class="modal-title" id="myModalLabel">登录</h3>
+<button type="button" class="close" data-dismiss="modal">
+<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+</button>
+</div>
+<div class="modal-body">
+<div class="form-group">
+<label class="form-check-label" for="username">&ensp;用户id</label>
+<input type="text" placeholder="username..." class="form-control" id="username" name="username">
+</div>
+<div class="form-group">
+<label class="form-check-label" for="password">&ensp;密码</label>
+<input type="password" placeholder="password..." class="form-control" id="password" name="password">
+</div>
+<button class="btn btn-primary" onclick="login()">确认</button>
+</div>
+</div>
+</div>
 </div>
 
 <script src="js/justgage/raphael-min.js"></script>
@@ -229,7 +215,6 @@
 <script src="js/justgage/justgage.init.js"></script>
 
 
-<%--java script--%>
 <script src="js/jquery-migrate-3.0.1.min.js"></script>
 <script src="js/popper.min.js"></script>
 <script src="js/bootstrap.min.js"></script>

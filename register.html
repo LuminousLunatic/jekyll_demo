@@ -1,243 +1,233 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Meridian
-  Date: 2019/5/30
-  Time: 00:14
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="zh_cn">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="Content-Type" content="text/html">
-    <title>注册Ordeal账号</title>
-    <link href="css/fontNunitoSans.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/flaticon.css">
-    <link rel="stylesheet" href="form/css/css.css"/>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="Content-Type" content="text/html">
+<title>注册Ordeal账号</title>
+<link href="css/fontNunitoSans.css" rel="stylesheet">
+<link rel="stylesheet" href="css/flaticon.css">
+<link rel="stylesheet" href="form/css/css.css"/>
 
-    <script>
+<script>
 
-        function login() {
-            var sno = document.getElementById("username").value;
-            var password = document.getElementById("password").value;
+function login() {
+var sno = document.getElementById("username").value;
+var password = document.getElementById("password").value;
 
 
-            //1.创建ajax对象
-            var xhr = ajaxFunction();
-            xhr.onreadystatechange = function() {
-                if(xhr.readyState == 4) {
-                    if(xhr.status == 200) {
-                        var data= xhr.responseText;
-                        if(data == 1){
-                            $('#myModal').modal('hide');
-                            $('#loginbtn').hide();
-                            //显示我的按钮或者跳转页面
-                        }else if(data == 0){
-                            alert('用户名或密码错误！');
-                        }
-                    }
-                }
-            };
-            //规定发送数据的形式（post/get），url，以及传输方式(同步/异步)
-            xhr.open("post","./login.do",true);
-            //post方式需要加下边这句，get方式不需要
-            xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-            //将页面输入数据发送到后台
-            xhr.send("sno="+sno+"&password="+password);
-        }
+//1.创建ajax对象
+var xhr = ajaxFunction();
+xhr.onreadystatechange = function() {
+if(xhr.readyState == 4) {
+if(xhr.status == 200) {
+var data= xhr.responseText;
+if(data == 1){
+$('#myModal').modal('hide');
+$('#loginbtn').hide();
+//显示我的按钮或者跳转页面
+}else if(data == 0){
+alert('用户名或密码错误！');
+}
+}
+}
+};
+//规定发送数据的形式（post/get），url，以及传输方式(同步/异步)
+xhr.open("post","./login.do",true);
+//post方式需要加下边这句，get方式不需要
+xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+//将页面输入数据发送到后台
+xhr.send("sno="+sno+"&password="+password);
+}
 
-        function newStudent() {
-            var sno = document.getElementById("sno").value;
-            var sname = document.getElementById("sname").value;
-            var spwd = document.getElementById("pwd").value;
-            var q2 = document.getElementById("q2").value;
-            var q3 = document.getElementById("q3").value;
+function newStudent() {
+var sno = document.getElementById("sno").value;
+var sname = document.getElementById("sname").value;
+var spwd = document.getElementById("pwd").value;
+var q2 = document.getElementById("q2").value;
+var q3 = document.getElementById("q3").value;
 
-            //1.创建ajax对象
-            var xhr = ajaxFunction();
-            xhr.onreadystatechange = function() {
-                if(xhr.readyState == 4) {
-                    if(xhr.status == 200) {
-                        var data= xhr.responseText;
-                        if(data == 1){
+//1.创建ajax对象
+var xhr = ajaxFunction();
+xhr.onreadystatechange = function() {
+if(xhr.readyState == 4) {
+if(xhr.status == 200) {
+var data= xhr.responseText;
+if(data == 1){
 
-                        }else if(data == 0){
-                            alert('用户名或密码错误！');
-                        }
-                    }
-                }
-            };
-            //规定发送数据的形式（post/get），url，以及传输方式(同步/异步)
-            xhr.open("post","./newStudent.do",true);
-            //post方式需要加下边这句，get方式不需要
-            xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-            //将页面输入数据发送到后台
-            xhr.send("sno="+sno+"&sname="+sname+"&spwd="+spwd+"&q2="+q2+"&q3="+q3);
-        }
+}else if(data == 0){
+alert('用户名或密码错误！');
+}
+}
+}
+};
+//规定发送数据的形式（post/get），url，以及传输方式(同步/异步)
+xhr.open("post","./newStudent.do",true);
+//post方式需要加下边这句，get方式不需要
+xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+//将页面输入数据发送到后台
+xhr.send("sno="+sno+"&sname="+sname+"&spwd="+spwd+"&q2="+q2+"&q3="+q3);
+}
 
-        function checkconfirm(){
-            var sno = document.getElementById("sno").value;
+function checkconfirm(){
+var sno = document.getElementById("sno").value;
 
-            //测试打印出username(输入值)
-            // console.log(sno);
-            //1.创建ajax对象
-            var xhr = ajaxFunction();
-            xhr.onreadystatechange = function() {
-                // console.log('xhr.readyState:',xhr.readyState);
-                //处理后台返回的数据
-                if(xhr.readyState == 4) {
-                    // console.log('xhr.status:',xhr.status);
-                    if(xhr.status == 200) {
-                        var data= xhr.responseText;
-                        if(data == 1){
-                            document.getElementById("snoinfo").innerHTML = "<font color='red'>该学号已经存在</font>";
-                            document.getElementById("button").disabled = true;
-                        }else if(data == 0){
-                            document.getElementById("snoinfo").innerHTML = "<font color='red'></font>";
-                            // document.getElementById("button").disabled = false;
-                        }
-                    }
-                }
-            };
-            //规定发送数据的形式（post/get），url，以及传输方式(同步/异步)
-            xhr.open("post","./checkSon.do",true);
-            //post方式需要加下边这句，get方式不需要
-            xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-            //将页面输入数据发送到后台
-            xhr.send("sno="+sno);
-        }
+//测试打印出username(输入值)
+// console.log(sno);
+//1.创建ajax对象
+var xhr = ajaxFunction();
+xhr.onreadystatechange = function() {
+// console.log('xhr.readyState:',xhr.readyState);
+//处理后台返回的数据
+if(xhr.readyState == 4) {
+// console.log('xhr.status:',xhr.status);
+if(xhr.status == 200) {
+var data= xhr.responseText;
+if(data == 1){
+document.getElementById("snoinfo").innerHTML = "<font color='red'>该学号已经存在</font>";
+document.getElementById("button").disabled = true;
+}else if(data == 0){
+document.getElementById("snoinfo").innerHTML = "<font color='red'></font>";
+// document.getElementById("button").disabled = false;
+}
+}
+}
+};
+//规定发送数据的形式（post/get），url，以及传输方式(同步/异步)
+xhr.open("post","./checkSon.do",true);
+//post方式需要加下边这句，get方式不需要
+xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+//将页面输入数据发送到后台
+xhr.send("sno="+sno);
+}
 
-        function ajaxFunction() {
-            var xmlHttp;
-            try {
-                xmlHttp = new XMLHttpRequest();
-            } catch(e) {
-                try {
-                    xmlHttp = new ActiveXObject("Msxm12.XMLHTTP");
-                } catch(e) {
-                    try {
-                        xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
-                    } catch(e) {}
-                }
-            }
-            return xmlHttp;
-        }
+function ajaxFunction() {
+var xmlHttp;
+try {
+xmlHttp = new XMLHttpRequest();
+} catch(e) {
+try {
+xmlHttp = new ActiveXObject("Msxm12.XMLHTTP");
+} catch(e) {
+try {
+xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+} catch(e) {}
+}
+}
+return xmlHttp;
+}
 
-        function validate() {
-            var pwd1 = document.getElementById("pwd").value;
-            var pwd2 = document.getElementById("pwd1").value;
+function validate() {
+var pwd1 = document.getElementById("pwd").value;
+var pwd2 = document.getElementById("pwd1").value;
 
-            <!-- 对比两次输入的密码 -->
-            if(pwd1 == pwd2)
-            {
-                document.getElementById("tishi").innerHTML="<font color='green'></font>";
-                document.getElementById("button").disabled = false;
-            }
-            else {
-                document.getElementById("tishi").innerHTML="<font color='red'>两次密码不相同</font>";
-                document.getElementById("button").disabled = true;
-            }
-        }
-    </script>
+<!-- 对比两次输入的密码 -->
+if(pwd1 == pwd2)
+{
+document.getElementById("tishi").innerHTML="<font color='green'></font>";
+document.getElementById("button").disabled = false;
+}
+else {
+document.getElementById("tishi").innerHTML="<font color='red'>两次密码不相同</font>";
+document.getElementById("button").disabled = true;
+}
+}
+</script>
 </head>
 <body>
 <form id="msform" action="#" method="post">
-    <!-- progressbar -->
-    <ul id="progressbar">
-        <li class="active">建立账号</li>
-        <li>学习经历</li>
-        <li>注册成功</li>
-    </ul>
-    <!-- fieldsets -->
-    <fieldset>
+<!-- progressbar -->
+<ul id="progressbar">
+<li class="active">建立账号</li>
+<li>学习经历</li>
+<li>注册成功</li>
+</ul>
+<!-- fieldsets -->
+<fieldset>
 
-        <label style="display:none;"><span></span><input type="text" name="hidden1" ></label>
-        <label style="display:none;"><span></span><input type="password" name="hidden2" ></label>
-        <h2 class="fs-title">创建账号</h2>
-        <h3 class="fs-subtitle">输入信息</h3>
-        <h5 class="fs-text">学号</h5>
-        <input type="text" class="form-control" name="sno" placeholder="" id="sno"  onkeyup="checkconfirm()" autocomplete="off"/>
-        <div id="snoinfo"></div>
-        <h5 class="fs-text">姓名</h5>
-        <input type="text" class="form-control" name="sname" placeholder="" id="sname" autocomplete="off"/>
-        <h5 class="fs-text">密码</h5>
-        <input type="password" name="spwd" placeholder="" id="pwd" AUTOCOMPLETE="off"/>
-        <h5 class="fs-text">确认密码</h5>
-        <input type="password" name="cpass" placeholder="" id="pwd1" onkeyup="validate()" AUTOCOMPLETE="off"/>
-        <div id="tishi"></div>
+<label style="display:none;"><span></span><input type="text" name="hidden1" ></label>
+<label style="display:none;"><span></span><input type="password" name="hidden2" ></label>
+<h2 class="fs-title">创建账号</h2>
+<h3 class="fs-subtitle">输入信息</h3>
+<h5 class="fs-text">学号</h5>
+<input type="text" class="form-control" name="sno" placeholder="" id="sno"  onkeyup="checkconfirm()" autocomplete="off"/>
+<div id="snoinfo"></div>
+<h5 class="fs-text">姓名</h5>
+<input type="text" class="form-control" name="sname" placeholder="" id="sname" autocomplete="off"/>
+<h5 class="fs-text">密码</h5>
+<input type="password" name="spwd" placeholder="" id="pwd" AUTOCOMPLETE="off"/>
+<h5 class="fs-text">确认密码</h5>
+<input type="password" name="cpass" placeholder="" id="pwd1" onkeyup="validate()" AUTOCOMPLETE="off"/>
+<div id="tishi"></div>
 
-        <input type="button" name="next" class="next action-button" id="button" value="Next" disabled="disabled"/>
+<input type="button" name="next" class="next action-button" id="button" value="Next" disabled="disabled"/>
 
-        <div class="col-auto"></div>
-        <span class="fs-text" style="font-size: 10px">
-            <a href="index.jsp" class="fs-text flaticon-analysis">不注册了，返回主页</a>
-        </span>
-    </fieldset>
-    <fieldset>
+<div class="col-auto"></div>
+<span class="fs-text" style="font-size: 10px">
+<a href="index.html" class="fs-text flaticon-analysis">不注册了，返回主页</a>
+</span>
+</fieldset>
+<fieldset>
 
-        <h2 class="fs-title">请回答几个问题</h2>
-        <h3 class="fs-subtitle">个性化你的学习进程</h3>
+<h2 class="fs-title">请回答几个问题</h2>
+<h3 class="fs-subtitle">个性化你的学习进程</h3>
 
-        <div class="check-column">
-            <span class="flaticon-analysis"></span>
-            <label for="q1">有过学习网络编程的经验吗？</label><br>
-            <select class="form-control" id="q1" name="q1">
-                <optgroup label="-------------">
-                    <option value="4">经验丰富</option>
-                    <option value="3">系统学习过</option>
-                    <option value="2">了解一些</option>
-                    <option value="1">啥也不知道</option>
-                </optgroup>
-            </select>
-        </div>
-        <div class="check-column">
-            <span class="flaticon-analysis"></span>
-            <label for="q2">现在的学习方向是什么？</label><br>
-            <select class="form-control" id="q2" name="q2">
-                <optgroup label="--------------">
-                    <option value="1">HTML</option>
-                    <option value="2">CSS</option>
-                    <option value="3">JS</option>
-                    <option value="4">都学一学</option>
-                    <option value="5">我不知道</option>
-                </optgroup>
-            </select></div>
-        <div class="check-column">
-            <span class="flaticon-analysis"></span>
-            <label for="q3">有不想学的部分吗？</label><br>
-            <select class="form-control" id="q3" name="q3">
-                <optgroup label="--------------">
-                    <option value="1">HTML</option>
-                    <option value="2">CSS</option>
-                    <option value="3">JS</option>
-                    <option value="4">没有</option>
-                </optgroup>
-            </select>
-        </div>
+<div class="check-column">
+<span class="flaticon-analysis"></span>
+<label for="q1">有过学习网络编程的经验吗？</label><br>
+<select class="form-control" id="q1" name="q1">
+<optgroup label="-------------">
+<option value="4">经验丰富</option>
+<option value="3">系统学习过</option>
+<option value="2">了解一些</option>
+<option value="1">啥也不知道</option>
+</optgroup>
+</select>
+</div>
+<div class="check-column">
+<span class="flaticon-analysis"></span>
+<label for="q2">现在的学习方向是什么？</label><br>
+<select class="form-control" id="q2" name="q2">
+<optgroup label="--------------">
+<option value="1">HTML</option>
+<option value="2">CSS</option>
+<option value="3">JS</option>
+<option value="4">都学一学</option>
+<option value="5">我不知道</option>
+</optgroup>
+</select></div>
+<div class="check-column">
+<span class="flaticon-analysis"></span>
+<label for="q3">有不想学的部分吗？</label><br>
+<select class="form-control" id="q3" name="q3">
+<optgroup label="--------------">
+<option value="1">HTML</option>
+<option value="2">CSS</option>
+<option value="3">JS</option>
+<option value="4">没有</option>
+</optgroup>
+</select>
+</div>
 
-        <div class="check-column"><br></div>
-        <div class="col-auto"></div>
-        <input type="button" name="previous" class="previous action-button" value="Previous"/>
-        <input type="button" name="next" class="next action-button" value="Next"  onclick="newStudent()"/>
+<div class="check-column"><br></div>
+<div class="col-auto"></div>
+<input type="button" name="previous" class="previous action-button" value="Previous"/>
+<input type="button" name="next" class="next action-button" value="Next"  onclick="newStudent()"/>
 
-        <div class="col-auto"></div>
-        <span class="fs-text" style="font-size: 10px">
-            <a href="index.jsp" class="fs-text flaticon-analysis">不注册了，返回主页</a>
-        </span>
-    </fieldset>
+<div class="col-auto"></div>
+<span class="fs-text" style="font-size: 10px">
+<a href="index.html" class="fs-text flaticon-analysis">不注册了，返回主页</a>
+</span>
+</fieldset>
 
-    <fieldset>
-        <h2 class="fs-title">注册完成！</h2>
-        <h3 class="fs-subtitle">点击按钮返回首页去登录</h3>
-        <h5 class="fs-text" style="text-align: center">感谢你的注册！</h5>
-        <div class="check-column"></div>
-        <%--        <input type="button" name="previous" class="previous action-button" value="Previous"/>--%>
-        <input type="button" name="return" class="action-button" value="Main"
-               onclick="window.location.href='index.jsp'"/>
-    </fieldset>
+<fieldset>
+<h2 class="fs-title">注册完成！</h2>
+<h3 class="fs-subtitle">点击按钮返回首页去登录</h3>
+<h5 class="fs-text" style="text-align: center">感谢你的注册！</h5>
+<div class="check-column"></div>
+<input type="button" name="return" class="action-button" value="Main"
+onclick="window.location.href='index.html'"/>
+</fieldset>
 </form>
 <script src="form/js/jquery-1.9.1.min.js" type="text/javascript"></script>
 <script src="form/js/jquery.easing.min.js" type="text/javascript"></script>

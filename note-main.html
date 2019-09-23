@@ -1,258 +1,228 @@
-<%@ page import="dao.NoteDao" %>
-<%@ page import="view.NoteView" %>
-<%@ page import="java.util.ArrayList" %><%--
-  Created by IntelliJ IDEA.
-  User: Meridian
-  Date: 2019/5/31
-  Time: 00:51
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="zh_cn">
 <head>
-    <title>Ordeal 笔记</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap&subset=chinese-simplified"
-          rel="stylesheet">
+<title>Ordeal 笔记</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap&subset=chinese-simplified"
+rel="stylesheet">
 
-    <%--<link href="https://fonts.googleapis.com/css?family=Noto+Sans+SC:100,300,400,500,700,900|Noto+Serif+SC:200,300,400,500,600,700,900&display=swap&subset=chinese-simplified"--%>
-    <%--rel="stylesheet">--%>
-    <link href="https://cdn.remixicon.com/releases/v1.2.2/remixicon.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
-          integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
-    <link rel="stylesheet" href="css/animate.css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="css/magnific-popup.css">
-    <link rel="stylesheet" href="css/aos.css">
-    <link rel="stylesheet" href="css/ionicons.min.css">
-    <%--<link rel="stylesheet" href="css/codestyle.css">--%>
-    <link rel="stylesheet" href="css/flaticon.css">
-    <link rel="stylesheet" href="css/icomoon.css">
-    <link rel="stylesheet" href="css/style.css">
+<link href="https://cdn.remixicon.com/releases/v1.2.2/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+<link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
+<link rel="stylesheet" href="css/animate.css">
+<link rel="stylesheet" href="css/owl.carousel.min.css">
+<link rel="stylesheet" href="css/owl.theme.default.min.css">
+<link rel="stylesheet" href="css/magnific-popup.css">
+<link rel="stylesheet" href="css/aos.css">
+<link rel="stylesheet" href="css/ionicons.min.css">
+<link rel="stylesheet" href="css/flaticon.css">
+<link rel="stylesheet" href="css/icomoon.css">
+<link rel="stylesheet" href="css/style.css">
 
-    <script>
+<script>
 
-        function login() {
-            var sno = document.getElementById("username").value;
-            var password = document.getElementById("password").value;
+function login() {
+var sno = document.getElementById("username").value;
+var password = document.getElementById("password").value;
 
 
-            //1.创建ajax对象
-            var xhr = ajaxFunction();
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState == 4) {
-                    if (xhr.status == 200) {
-                        var data = xhr.responseText;
-                        if (data == 1) {
-                            $('#myModal').modal('hide');
-                            $('#loginbtn').hide();
-                            //显示我的按钮或者跳转页面
-                        } else if (data == 0) {
-                            alert('用户名或密码错误！');
-                        }
-                    }
-                }
-            };
-            //规定发送数据的形式（post/get），url，以及传输方式(同步/异步)
-            xhr.open("post", "./login.do", true);
-            //post方式需要加下边这句，get方式不需要
-            xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            //将页面输入数据发送到后台
-            xhr.send("sno=" + sno + "&password=" + password);
-        }
+//1.创建ajax对象
+var xhr = ajaxFunction();
+xhr.onreadystatechange = function () {
+if (xhr.readyState == 4) {
+if (xhr.status == 200) {
+var data = xhr.responseText;
+if (data == 1) {
+$('#myModal').modal('hide');
+$('#loginbtn').hide();
+//显示我的按钮或者跳转页面
+} else if (data == 0) {
+alert('用户名或密码错误！');
+}
+}
+}
+};
+//规定发送数据的形式（post/get），url，以及传输方式(同步/异步)
+xhr.open("post", "./login.do", true);
+//post方式需要加下边这句，get方式不需要
+xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+//将页面输入数据发送到后台
+xhr.send("sno=" + sno + "&password=" + password);
+}
 
-        function ajaxFunction() {
-            var xmlHttp;
-            try {
-                xmlHttp = new XMLHttpRequest();
-            } catch (e) {
-                try {
-                    xmlHttp = new ActiveXObject("Msxm12.XMLHTTP");
-                } catch (e) {
-                    try {
-                        xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
-                    } catch (e) {
-                    }
-                }
-            }
-            return xmlHttp;
-        }
-    </script>
+function ajaxFunction() {
+var xmlHttp;
+try {
+xmlHttp = new XMLHttpRequest();
+} catch (e) {
+try {
+xmlHttp = new ActiveXObject("Msxm12.XMLHTTP");
+} catch (e) {
+try {
+xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+} catch (e) {
+}
+}
+}
+return xmlHttp;
+}
+</script>
 
 </head>
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
-<%--导航栏--%>
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target"
-     id="ftco-navbar">
-    <div class="container">
-        <a class="navbar-brand" href="index.jsp">Or<span>deal</span></a>
-        <button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse"
-                data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="oi oi-menu"></span> Menu
-        </button>
-        <div class="collapse navbar-collapse" id="ftco-nav">
-            <ul class="navbar-nav nav ml-auto" style="align-items: baseline">
-                <li class="nav-item">
-                    <a href="<c:if test="${success == \"true\"}">index-login.jsp</c:if><c:if test="${success == null}">index.jsp</c:if>"
-                       class="nav-link">
-                        <span>主页</span>
-                    </a>
-                </li>
-                <li class="nav-item"><a href="" class="nav-link dropdown-toggle" data-toggle="dropdown">HTML</a>
-                    <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" href="html-main.jsp">HTML 教程</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="try/try.php?filename=tryhtml_intro">HTML 实例</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="tags/html-reference.jsp">HTML 参考手册</a>
-                    </div>
-                </li>
-                <li class="nav-item"><a href="" class="nav-link dropdown-toggle" data-toggle="dropdown">CSS</a>
-                    <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" href="#">CSS 教程</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">CSS 实例</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">CSS 参考手册</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">CSS 响应式设计</a>
-                    </div>
-                </li>
-                <li class="nav-item"><a href="" class="nav-link dropdown-toggle" data-toggle="dropdown">JavaScript</a>
-                    <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" href="#">Javascript 教程</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">JS 函数</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">JS HTML DOM</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">JS 高级教程</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">JS 浏览器BOM</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">JS 库</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">JS 实例</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">JS 参考手册</a>
-                    </div>
-                </li>
-                <li class="nav-item"><a href="note-main.jsp" class="nav-link"><span>笔记</span></a></li>
-                <%--下拉菜单--%>
-                <li class="nav-item"><a href="share-main.jsp" class="nav-link"><span>模版</span></a></li>
-                <%//--下拉菜单--%>
-                <li class="nav-item"><a href="exam-main.jsp" class="nav-link"><span>测验</span></a></li>
-                <li class="nav-item">
-                    <div class="col-1"></div>
-                </li>
-                <li class="nav-item">
-                    <button class="btn btn-outline-dark px-4 py-2" data-toggle="modal" data-target="#myModal"
-                            id="loginbtn" style="display: <c:if test="${success == \"true\"}">none</c:if>">登录
-                    </button>
-                </li>
-            </ul>
-        </div>
-    </div>
+id="ftco-navbar">
+<div class="container">
+<a class="navbar-brand" href="index.html">Or<span>deal</span></a>
+<button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse"
+data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+<span class="oi oi-menu"></span> Menu
+</button>
+<div class="collapse navbar-collapse" id="ftco-nav">
+<ul class="navbar-nav nav ml-auto" style="align-items: baseline">
+<li class="nav-item">
+<a href="<c:if test="${success == \"true\"}">index-login.html</c:if><c:if test="${success == null}">index.html</c:if>"
+class="nav-link">
+<span>主页</span>
+</a>
+</li>
+<li class="nav-item"><a href="" class="nav-link dropdown-toggle" data-toggle="dropdown">HTML</a>
+<div class="dropdown-menu dropdown-menu-right">
+<a class="dropdown-item" href="html-main.html">HTML 教程</a>
+<div class="dropdown-divider"></div>
+<a class="dropdown-item" href="try/try.php?filename=tryhtml_intro">HTML 实例</a>
+<div class="dropdown-divider"></div>
+<a class="dropdown-item" href="tags/html-reference.html">HTML 参考手册</a>
+</div>
+</li>
+<li class="nav-item"><a href="" class="nav-link dropdown-toggle" data-toggle="dropdown">CSS</a>
+<div class="dropdown-menu dropdown-menu-right">
+<a class="dropdown-item" href="#">CSS 教程</a>
+<div class="dropdown-divider"></div>
+<a class="dropdown-item" href="#">CSS 实例</a>
+<div class="dropdown-divider"></div>
+<a class="dropdown-item" href="#">CSS 参考手册</a>
+<div class="dropdown-divider"></div>
+<a class="dropdown-item" href="#">CSS 响应式设计</a>
+</div>
+</li>
+<li class="nav-item"><a href="" class="nav-link dropdown-toggle" data-toggle="dropdown">JavaScript</a>
+<div class="dropdown-menu dropdown-menu-right">
+<a class="dropdown-item" href="#">Javascript 教程</a>
+<div class="dropdown-divider"></div>
+<a class="dropdown-item" href="#">JS 函数</a>
+<div class="dropdown-divider"></div>
+<a class="dropdown-item" href="#">JS HTML DOM</a>
+<div class="dropdown-divider"></div>
+<a class="dropdown-item" href="#">JS 高级教程</a>
+<div class="dropdown-divider"></div>
+<a class="dropdown-item" href="#">JS 浏览器BOM</a>
+<div class="dropdown-divider"></div>
+<a class="dropdown-item" href="#">JS 库</a>
+<div class="dropdown-divider"></div>
+<a class="dropdown-item" href="#">JS 实例</a>
+<div class="dropdown-divider"></div>
+<a class="dropdown-item" href="#">JS 参考手册</a>
+</div>
+</li>
+<li class="nav-item"><a href="note-main.html" class="nav-link"><span>笔记</span></a></li>
+<li class="nav-item"><a href="share-main.html" class="nav-link"><span>模版</span></a></li>
+<li class="nav-item"><a href="exam-main.html" class="nav-link"><span>测验</span></a></li>
+<li class="nav-item">
+<div class="col-1"></div>
+</li>
+<li class="nav-item">
+<button class="btn btn-outline-dark px-4 py-2" data-toggle="modal" data-target="#myModal"
+id="loginbtn" style="display: <c:if test="${success == \"true\"}">none</c:if>">登录
+</button>
+</li>
+</ul>
+</div>
+</div>
 </nav>
-<%--//导航栏--%>
 
-<%
-    request.setCharacterEncoding("UTF-8");
-    NoteDao noteDao = new NoteDao();
-    ArrayList<NoteView> noteViewArrayList = noteDao.findAll();
-    request.getSession().setAttribute("noteViewArrayList", noteViewArrayList);
-%>
 
 <section class="ftco-section"
-         style="background-image: url(images/bg-note.png); background-size: cover; background-clip: initial">
-    <%--<h2 class="text-center" style="color: #42E177;margin-bottom: 3rem; ">用户笔记列表</h2>--%>
-    <div class="row" style="background-color: rgba(255, 255, 255, 0.45);">
-        <div class="col-md-1"></div>
-        <div class="col-md-6 ftco-animate fadeInUp ftco-animated"
-             style="padding-left: 15px; border-right: 1px dashed #000;">
-            <%--<h3 class="heading" style="color: #1DBCB9">最新评论</h3>--%>
-            <div class="row">
-                <ul class="comment-list">
-                    <c:forEach items="${noteViewArrayList}" var="note">
-                        <li class="comment">
-                            <div class="comment-body">
-                                <h3>${note.getSname()}</h3>
-                                <h2>${note.getTitle()}</h2>
-                                <div class="meta">${note.getTime()}</div>
-                                <p>${note.getText()}</p>
-                                <p><a href="#" class="ctg">${note.getCname()}</a></p>
-                            </div>
-                        </li>
-                    </c:forEach>
-                </ul>
-                <!-- END comment-list -->
-            </div>
-            <div class="d-print-inline-block"></div>
-        </div>
-        <div class="col-md-5 sidebar-box ftco-animate text-center">
-            <%--<h2 class="heading-sidebar">相&ensp;关</h2>--%>
-            <br>
-            <div class="block-21 mb-4 d-flex">
+style="background-image: url(images/bg-note.png); background-size: cover; background-clip: initial">
+<div class="row" style="background-color: rgba(255, 255, 255, 0.45);">
+<div class="col-md-1"></div>
+<div class="col-md-6 ftco-animate fadeInUp ftco-animated"
+style="padding-left: 15px; border-right: 1px dashed #000;">
+<div class="row">
+<ul class="comment-list">
+<c:forEach items="${noteViewArrayList}" var="note">
+<li class="comment">
+<div class="comment-body">
+<h3>${note.getSname()}</h3>
+<h2>${note.getTitle()}</h2>
+<div class="meta">${note.getTime()}</div>
+<p>${note.getText()}</p>
+<p><a href="#" class="ctg">${note.getCname()}</a></p>
+</div>
+</li>
+</c:forEach>
+</ul>
+<!-- END comment-list -->
+</div>
+<div class="d-print-inline-block"></div>
+</div>
+<div class="col-md-5 sidebar-box ftco-animate text-center">
+<br>
+<div class="block-21 mb-4 d-flex">
 
-                <div class="text">
-                    <h3 class="heading"><a href="note-add.jsp">去记笔记</a></h3>
-                </div>
-            </div>
-            <div class="block-21 mb-4 d-flex">
-                <div class="text">
-                    <h3 class="heading"><a href="share-main.jsp">模&emsp;版</a></h3>
-                </div>
-            </div>
-            <div class="block-21 mb-4 d-flex">
-                <div class="text">
-                    <h3 class="heading"><a href="try/compile.jsp">HTML 实例</a></h3>
-                </div>
-            </div>
-            <div class="block-21 mb-4 d-flex">
-                <div class="text">
-                    <h3 class="heading"><a href="html-reference.jsp">HTML 参考手册</a></h3>
-                </div>
-            </div>
-            <div class="block-21 mb-4 d-flex">
-                <div class="text">
-                    <h3 class="heading"><a href="html-main.jsp">更多 HTML</a></h3>
-                </div>
-            </div>
-        </div>
-    </div>
+<div class="text">
+<h3 class="heading"><a href="note-add.html">去记笔记</a></h3>
+</div>
+</div>
+<div class="block-21 mb-4 d-flex">
+<div class="text">
+<h3 class="heading"><a href="share-main.html">模&emsp;版</a></h3>
+</div>
+</div>
+<div class="block-21 mb-4 d-flex">
+<div class="text">
+<h3 class="heading"><a href="try/compile.html">HTML 实例</a></h3>
+</div>
+</div>
+<div class="block-21 mb-4 d-flex">
+<div class="text">
+<h3 class="heading"><a href="html-reference.html">HTML 参考手册</a></h3>
+</div>
+</div>
+<div class="block-21 mb-4 d-flex">
+<div class="text">
+<h3 class="heading"><a href="html-main.html">更多 HTML</a></h3>
+</div>
+</div>
+</div>
+</div>
 </section>
 
 <!-- MODAL -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header"><h3 class="modal-title" id="myModalLabel">登录</h3>
-                <button type="button" class="close" data-dismiss="modal">
-                    <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <%--                <form action= method="post">--%>
-                <div class="form-group">
-                    <label class="form-check-label" for="username">&ensp;用户id</label>
-                    <input type="text" placeholder="username..." class="form-control" id="username" name="username">
-                </div>
-                <div class="form-group">
-                    <label class="form-check-label" for="password">&ensp;密码</label>
-                    <input type="password" placeholder="password..." class="form-control" id="password" name="password">
-                </div>
-                <button class="btn btn-primary" onclick="login()">确认</button>
-                <%--                </form>--%>
-            </div>
-        </div>
-    </div>
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header"><h3 class="modal-title" id="myModalLabel">登录</h3>
+<button type="button" class="close" data-dismiss="modal">
+<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+</button>
 </div>
-<%--java script--%>
+<div class="modal-body">
+<div class="form-group">
+<label class="form-check-label" for="username">&ensp;用户id</label>
+<input type="text" placeholder="username..." class="form-control" id="username" name="username">
+</div>
+<div class="form-group">
+<label class="form-check-label" for="password">&ensp;密码</label>
+<input type="password" placeholder="password..." class="form-control" id="password" name="password">
+</div>
+<button class="btn btn-primary" onclick="login()">确认</button>
+</div>
+</div>
+</div>
+</div>
 <script src="js/jquery.min.js"></script>
 <script src="js/jquery-migrate-3.0.1.min.js"></script>
 <script src="js/popper.min.js"></script>
