@@ -1,6 +1,663 @@
 <!DOCTYPE html>
 <html lang="zh_cn">
 <head>
+<title>Ordeal 测验</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap&subset=chinese-simplified"
+rel="stylesheet">
+
+<link href="https://cdn.remixicon.com/releases/v1.2.2/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+<link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
+<link rel="stylesheet" href="css/animate.css">
+<link rel="stylesheet" href="css/owl.carousel.min.css">
+<link rel="stylesheet" href="css/owl.theme.default.min.css">
+<link rel="stylesheet" href="css/magnific-popup.css">
+<link rel="stylesheet" href="css/aos.css">
+<link rel="stylesheet" href="css/ionicons.min.css">
+<link href="https://unpkg.com/ionicons@4.5.5/dist/css/ionicons.min.css" rel="stylesheet">
+
+<link rel="stylesheet" href="css/flaticon.css">
+<link rel="stylesheet" href="css/icomoon.css">
+<link rel="stylesheet" href="css/style.css">
+
+<script>
+
+function login() {
+var sno = document.getElementById("username").value;
+var password = document.getElementById("password").value;
+
+
+//1.创建ajax对象
+var xhr = ajaxFunction();
+xhr.onreadystatechange = function() {
+if(xhr.readyState == 4) {
+if(xhr.status == 200) {
+var data= xhr.responseText;
+if(data == 1){
+$('#myModal').modal('hide');
+$('#loginbtn').hide();
+//显示我的按钮或者跳转页面
+}else if(data == 0){
+alert('用户名或密码错误！');
+}
+}
+}
+};
+//规定发送数据的形式（post/get），url，以及传输方式(同步/异步)
+xhr.open("post","./login.do",true);
+//post方式需要加下边这句，get方式不需要
+xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+//将页面输入数据发送到后台
+xhr.send("sno="+sno+"&password="+password);
+}
+
+function ajaxFunction() {
+var xmlHttp;
+try {
+xmlHttp = new XMLHttpRequest();
+} catch(e) {
+try {
+xmlHttp = new ActiveXObject("Msxm12.XMLHTTP");
+} catch(e) {
+try {
+xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+} catch(e) {}
+}
+}
+return xmlHttp;
+}
+</script>
+
+</head>
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target"
+id="ftco-navbar">
+<div class="container">
+<a class="navbar-brand" href="index.html">Or<span>deal</span></a>
+<button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse"
+data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+<span class="oi oi-menu"></span> Menu
+</button>
+<div class="collapse navbar-collapse" id="ftco-nav">
+<ul class="navbar-nav nav ml-auto" style="align-items: baseline">
+<li class="nav-item">
+<a href="<c:if test="${success == null}">index.html</c:if>" class="nav-link">
+<span>主页</span>
+</a>
+</li>                <li class="nav-item"><a href="" class="nav-link dropdown-toggle" data-toggle="dropdown">HTML</a>
+<div class="dropdown-menu dropdown-menu-right">
+<a class="dropdown-item" href="html-main.html">HTML 教程</a>
+<div class="dropdown-divider"></div>
+<a class="dropdown-item" href="try/try.php?filename=tryhtml_intro">HTML 实例</a>
+<div class="dropdown-divider"></div>
+<a class="dropdown-item" href="tags/html-reference.html">HTML 参考手册</a>
+</div>
+</li>
+<li class="nav-item"><a href="" class="nav-link dropdown-toggle" data-toggle="dropdown">CSS</a>
+<div class="dropdown-menu dropdown-menu-right">
+<a class="dropdown-item" href="#">CSS 教程</a>
+<div class="dropdown-divider"></div>
+<a class="dropdown-item" href="#">CSS 实例</a>
+<div class="dropdown-divider"></div>
+<a class="dropdown-item" href="#">CSS 参考手册</a>
+<div class="dropdown-divider"></div>
+<a class="dropdown-item" href="#">CSS 响应式设计</a>
+</div>
+</li>
+<li class="nav-item"><a href="" class="nav-link dropdown-toggle" data-toggle="dropdown">JavaScript</a>
+<div class="dropdown-menu dropdown-menu-right">
+<a class="dropdown-item" href="#">Javascript 教程</a>
+<div class="dropdown-divider"></div>
+<a class="dropdown-item" href="#">JS 函数</a>
+<div class="dropdown-divider"></div>
+<a class="dropdown-item" href="#">JS HTML DOM</a>
+<div class="dropdown-divider"></div>
+<a class="dropdown-item" href="#">JS 高级教程</a>
+<div class="dropdown-divider"></div>
+<a class="dropdown-item" href="#">JS 浏览器BOM</a>
+<div class="dropdown-divider"></div>
+<a class="dropdown-item" href="#">JS 库</a>
+<div class="dropdown-divider"></div>
+<a class="dropdown-item" href="#">JS 实例</a>
+<div class="dropdown-divider"></div>
+<a class="dropdown-item" href="#">JS 参考手册</a>
+</div>
+</li>
+<li class="nav-item"><a href="note-main.html" class="nav-link"><span>笔记</span></a></li>
+<li class="nav-item"><a href="share-main.html" class="nav-link"><span>模版</span></a></li>
+<li class="nav-item"><a href="exam-main.html" class="nav-link"><span>测验</span></a></li>
+<li class="nav-item">
+<div class="col-1"></div>
+</li>
+<li class="nav-item">
+<button class="btn btn-outline-dark px-4 py-2" data-toggle="modal" data-target="#myModal"
+id="loginbtn" style="display: ">登录
+</button>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<section class="ftco-section ftco-no-pb ftco-no-pt ftco-services bg-light" id="services-section">
+<div class="container">
+<div class="row no-gutters">
+<div class="col-md-1"></div>
+<div class="col-md-3 ftco-animate py-5 nav-link-wrap fadeInUp ftco-animated" id="squ">
+<div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+<br><br>
+<a class="nav-link px-4 active" id="v-pills-1-tab" data-toggle="pill" href="#v-pills-1" role="tab"
+aria-controls="v-pills-1" aria-selected="true"><span class="mr-3 icon-box-filled fa-fw"></span>
+HTML 测验
+</a><br>
+<a class="nav-link px-4" id="v-pills-2-tab" data-toggle="pill" href="#v-pills-2" role="tab"
+aria-controls="v-pills-2" aria-selected="false"><span
+class="mr-3 icon-angle-double-up fa-fw"></span>
+HTML5 测验
+</a><br>
+<a class="nav-link px-4" id="v-pills-3-tab" data-toggle="pill" href="#v-pills-3" role="tab"
+aria-controls="v-pills-3" aria-selected="false"><span
+class="mr-3 icon-accessibility1 fa-fw"></span>
+XHTML 测验
+</a><br>
+<a class="nav-link px-4" id="v-pills-4-tab" data-toggle="pill" href="#v-pills-4" role="tab"
+aria-controls="v-pills-4" aria-selected="false"><span class="mr-3 icon-crosshairs fa-fw"></span>
+CSS 测验
+</a><br>
+<a class="nav-link px-4" id="v-pills-5-tab" data-toggle="pill" href="#v-pills-5" role="tab"
+aria-controls="v-pills-5" aria-selected="false"><span class="mr-3 icon-certificate fa-fw"></span>
+JavaScript 测验
+</a>
+<br><br><br><br><br><br><br><br>
+</div>
+</div>
+<div class="col-md-1"></div>
+<div class="col-md-6 ftco-animate mt-5 pt-5 align-items-sm-center fadeInUp ftco-animated">
+<div class="tab-content pl-md-3 pt-5" id="v-pills-tabContent">
+
+<div class="chalk-text tab-pane fade show active" id="v-pills-1" role="tabpanel"
+aria-labelledby="v-pills-1-tab">
+<div class="ftco-animate">
+<a href="exam/html-exam1.html" rel="noopener noreferrer"> HTML 测验一</a><br>
+<a href="exam/html-exam2.html" rel="noopener noreferrer"> HTML 测验二</a><br>
+<a href="exam/html-exam3.html" rel="noopener noreferrer"> HTML 测验三</a><br>
+<a href="exam/html-exam4.html" rel="noopener noreferrer"> HTML 测验四</a><br>
+<a href="exam/html-exam5.html" rel="noopener noreferrer"> HTML 测验五</a>
+</div>
+</div>
+
+<div class="chalk-text tab-pane fade" id="v-pills-2" role="tabpanel"
+aria-labelledby="v-pills-2-tab">
+<div class="ftco-animate">
+<a href="#" rel="noopener noreferrer" target="_blank">HTML5 测验一</a><br>
+<a href="#" rel="noopener noreferrer" target="_blank">HTML5 测验二</a><br>
+<a href="#" rel="noopener noreferrer" target="_blank">HTML5 测验三</a><br>
+<a href="#" rel="noopener noreferrer" target="_blank">HTML5 测验四</a><br>
+<a href="#" rel="noopener noreferrer" target="_blank">HTML5 测验五</a><br>
+<a href="#" rel="noopener noreferrer" target="_blank">HTML5 测验六</a><br>
+<a href="#" rel="noopener noreferrer" target="_blank">HTML5 测验七</a><br>
+
+</div>
+</div>
+<div class="chalk-text tab-pane fade" id="v-pills-3" role="tabpanel"
+aria-labelledby="v-pills-3-tab">
+<div class="ftco-animate">
+<a href="https://www.runoob.com/quiz/xhtml-quiz.html" rel="noopener noreferrer"
+target="_blank">XHTML 测验一</a>
+</div>
+</div>
+<div class="chalk-text tab-pane fade" id="v-pills-4" role="tabpanel"
+aria-labelledby="v-pills-4-tab">
+<div class="ftco-animate">
+<a href="#" rel="noopener noreferrer" target="_blank">CSS 测验一</a><br>
+<a href="#" rel="noopener noreferrer" target="_blank">CSS 测验二</a><br>
+<a href="#" rel="noopener noreferrer" target="_blank">CSS 测验三</a><br>
+<a href="#" rel="noopener noreferrer" target="_blank">CSS 测验四</a><br>
+<a href="#" rel="noopener noreferrer" target="_blank">CSS 测验五</a><br>
+</div>
+</div>
+<div class="chalk-text tab-pane fade" id="v-pills-5" role="tabpanel"
+aria-labelledby="v-pills-5-tab">
+<div class="ftco-animate">
+<a href="#" rel="noopener noreferrer" target="_blank">JavaScript 测验一</a><br>
+<a href="#" rel="noopener noreferrer" target="_blank">JavaScript 测验二</a><br>
+<a href="#" rel="noopener noreferrer" target="_blank">JavaScript 测验三</a><br>
+<a href="#" rel="noopener noreferrer" target="_blank">JavaScript 测验四</a><br>
+</div>
+</div>
+</div>
+</div>
+<div class="col-md-1"></div>
+</div>
+</div>
+</section>
+
+
+<!-- MODAL -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header"><h3 class="modal-title" id="myModalLabel">登录</h3>
+<button type="button" class="close" data-dismiss="modal">
+<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+</button>
+</div>
+<div class="modal-body">
+<div class="form-group">
+<label class="form-check-label" for="username">&ensp;用户id</label>
+<input type="text" placeholder="username..." class="form-control" id="username" name="username">
+</div>
+<div class="form-group">
+<label class="form-check-label" for="password">&ensp;密码</label>
+<input type="password" placeholder="password..." class="form-control" id="password" name="password">
+</div>
+<button class="btn btn-primary" onclick="login()">确认</button>
+</div>
+</div>
+</div>
+</div>
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery-migrate-3.0.1.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.easing.1.3.js"></script>
+<script src="js/jquery.waypoints.min.js"></script>
+<script src="js/jquery.stellar.min.js"></script>
+<script src="js/owl.carousel.min.js"></script>
+<script src="js/jquery.magnific-popup.min.js"></script>
+<script src="js/aos.js"></script>
+<script src="js/jquery.animateNumber.min.js"></script>
+<script src="js/scrollax.min.js"></script>
+<script src="js/google-map.js"></script>
+<script src="js/main.js"></script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="zh_cn">
+<head>
+<title>Ordeal</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="css/fontNunitoSans.css" rel="stylesheet">
+<link href="https://cdn.remixicon.com/releases/v1.2.2/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+<link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
+<link rel="stylesheet" href="css/animate.css">
+<link rel="stylesheet" href="css/owl.carousel.min.css">
+<link rel="stylesheet" href="css/owl.theme.default.min.css">
+<link rel="stylesheet" href="css/magnific-popup.css">
+<link rel="stylesheet" href="css/aos.css">
+<link rel="stylesheet" href="css/ionicons.min.css">
+<link rel="stylesheet" href="css/codestyle.css">
+<link rel="stylesheet" href="css/flaticon.css">
+<link rel="stylesheet" href="css/icomoon.css">
+<link rel="stylesheet" href="css/style.css">
+
+<script>
+
+function login() {
+var sno = document.getElementById("username").value;
+var password = document.getElementById("password").value;
+
+
+//1.创建ajax对象
+var xhr = ajaxFunction();
+xhr.onreadystatechange = function() {
+if(xhr.readyState == 4) {
+if(xhr.status == 200) {
+var data= xhr.responseText;
+if(data == 1){
+$('#myModal').modal('hide');
+$('#loginbtn').hide();
+//显示我的按钮或者跳转页面
+}else if(data == 0){
+alert('用户名或密码错误！');
+}
+}
+}
+};
+//规定发送数据的形式（post/get），url，以及传输方式(同步/异步)
+xhr.open("post","./login.do",true);
+//post方式需要加下边这句，get方式不需要
+xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+//将页面输入数据发送到后台
+xhr.send("sno="+sno+"&password="+password);
+}
+
+function ajaxFunction() {
+var xmlHttp;
+try {
+xmlHttp = new XMLHttpRequest();
+} catch(e) {
+try {
+xmlHttp = new ActiveXObject("Msxm12.XMLHTTP");
+} catch(e) {
+try {
+xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+} catch(e) {}
+}
+}
+return xmlHttp;
+}
+</script>
+
+
+<style type="text/css">
+#box::-webkit-scrollbar {
+display: none;
+}
+</style>
+
+
+</head>
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300" id="box">
+<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target"
+id="ftco-navbar">
+<div class="container">
+<a class="navbar-brand" href="index.html">Or<span>deal</span></a>
+<button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse"
+data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+<span class="oi oi-menu"></span> Menu
+</button>
+<div class="collapse navbar-collapse" id="ftco-nav">
+<ul class="navbar-nav nav ml-auto" style="align-items: baseline">
+<li class="nav-item">
+<a href="<c:if test="${success == null}">index.html</c:if>" class="nav-link">
+<span>主页</span>
+</a>
+</li>
+<li class="nav-item"><a href="" class="nav-link dropdown-toggle" data-toggle="dropdown">HTML</a>
+<div class="dropdown-menu dropdown-menu-right">
+<a class="dropdown-item" href="html-main.html">HTML 教程</a>
+<div class="dropdown-divider"></div>
+<a class="dropdown-item" href="try/try.php?filename=tryhtml_intro">HTML 实例</a>
+<div class="dropdown-divider"></div>
+<a class="dropdown-item" href="tags/html-reference.html">HTML 参考手册</a>
+</div>
+</li>
+<li class="nav-item"><a href="" class="nav-link dropdown-toggle" data-toggle="dropdown">CSS</a>
+<div class="dropdown-menu dropdown-menu-right">
+<a class="dropdown-item" href="#">CSS 教程</a>
+<div class="dropdown-divider"></div>
+<a class="dropdown-item" href="#">CSS 实例</a>
+<div class="dropdown-divider"></div>
+<a class="dropdown-item" href="#">CSS 参考手册</a>
+<div class="dropdown-divider"></div>
+<a class="dropdown-item" href="#">CSS 响应式设计</a>
+</div>
+</li>
+<li class="nav-item"><a href="" class="nav-link dropdown-toggle" data-toggle="dropdown">JavaScript</a>
+<div class="dropdown-menu dropdown-menu-right">
+<a class="dropdown-item" href="#">Javascript 教程</a>
+<div class="dropdown-divider"></div>
+<a class="dropdown-item" href="#">JS 函数</a>
+<div class="dropdown-divider"></div>
+<a class="dropdown-item" href="#">JS HTML DOM</a>
+<div class="dropdown-divider"></div>
+<a class="dropdown-item" href="#">JS 高级教程</a>
+<div class="dropdown-divider"></div>
+<a class="dropdown-item" href="#">JS 浏览器BOM</a>
+<div class="dropdown-divider"></div>
+<a class="dropdown-item" href="#">JS 库</a>
+<div class="dropdown-divider"></div>
+<a class="dropdown-item" href="#">JS 实例</a>
+<div class="dropdown-divider"></div>
+<a class="dropdown-item" href="#">JS 参考手册</a>
+</div>
+</li>
+<li class="nav-item"><a href="note-main.html" class="nav-link"><span>笔记</span></a></li>
+<li class="nav-item"><a href="share-main.html" class="nav-link"><span>模版</span></a></li>
+<li class="nav-item"><a href="exam-main.html" class="nav-link"><span>测验</span></a></li>
+<li class="nav-item">
+<div class="col-1"></div>
+</li>
+<li class="nav-item">
+<button class="btn btn-outline-dark px-4 py-2" data-toggle="modal" data-target="#myModal"
+id="loginbtn" style="display: ">登录
+</button>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+
+<section class="ftco-section ftco-no-pb ftco-no-pt ftco-services bg-light" id="services-section">
+<div class="container">
+<div class="row no-gutters">
+<div class="col-md-3 ftco-animate py-5 nav-link-wrap">
+<div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+<a class="nav-link px-4 active" role="tab" id="html-2-tab" href="html-main.html"
+aria-controls="html-2" aria-selected="true"><span class="mr-2 fab fa-html5 fa-fw"></span> HTML 教程
+</a>
+<div class="divider"></div>
+<a class="nav-link px-4" role="tab" id="html-3-tab" href="html/html-intro.html"
+aria-controls="html-3" aria-selected="false"><span class="mr-2 fas fa-stream fa-fw"></span> HTML
+简介
+</a>
+<div class="divider"></div>
+<a class="nav-link px-4" role="tab" id="html-4-tab" href="html/html-editors.html"
+aria-controls="html-4" aria-selected="false"><span class="mr-2 fas fa-keyboard fa-fw"></span>
+HTML 编辑器
+</a>
+<div class="divider"></div>
+<a class="nav-link px-4" role="tab" id="html-5-tab" href="html/html-basic.html"
+aria-controls="html-5" aria-selected="false"><span class="mr-2 fas fa-tag fa-fw"></span> HTML 基础
+</a>
+<div class="divider"></div>
+<a class="nav-link px-4" role="tab" id="html-6-tab" href="html/html-elements.html"
+aria-controls="html-6" aria-selected="false"><span class="mr-2 fab fa-elementor fa-fw"></span>
+HTML 元素
+</a>
+<div class="divider"></div>
+<a class="nav-link px-4" role="tab" id="html-7-tab" href="html/html-attributes.html"
+aria-controls="html-7" aria-selected="false"><span class="mr-2 fas fas fa-percent fa-fw"></span>
+HTML 属性
+</a>
+<div class="divider"></div>
+<a class="nav-link px-4" role="tab" id="html-8-tab" href="html/html-headings.html"
+aria-controls="html-8" aria-selected="false"><span class="mr-2 fas fa-quote-left fa-fw"></span>
+HTML 标题
+</a>
+<div class="divider"></div>
+<a class="nav-link px-4" role="tab" id="html-9-tab" href="html/html-paragraphs.html"
+aria-controls="html-9" aria-selected="false"><span class="mr-2 fas fa-outdent fa-fw"></span> HTML
+段落
+</a>
+<div class="divider"></div>
+<a class="nav-link px-4" role="tab" id="html-10-tab" href="html/html-formatting.html"
+aria-controls="html-10" aria-selected="false"><span class="mr-2 fas fa-text-height fa-fw"></span>
+HTML
+文本格式化
+</a>
+<div class="divider"></div>
+<a class="nav-link px-4" role="tab" id="html-11-tab" href="html/html-links.html"
+aria-controls="html-11" aria-selected="false"><span class="mr-2 fas fa-link fa-fw"></span> HTML
+链接
+</a>
+<div class="divider"></div>
+<a class="nav-link px-4" role="tab" id="html-12-tab" href="html/html-head.html"
+aria-controls="html-12" aria-selected="false"><span class="mr-2 fas fa-heading fa-fw"></span>
+HTML 头部
+</a>
+<div class="divider"></div>
+<a class="nav-link px-4" role="tab" id="html-13-tab" href="html/html-css.html"
+aria-controls="html-13" aria-selected="false"><span class="mr-2 fab fa-css3 fa-fw"></span> HTML
+CSS
+</a>
+<div class="divider"></div>
+<a class="nav-link px-4" role="tab" id="html-14-tab" href="html/html-images.html" onclick="window.location.href='html/html-images.html'"
+aria-controls="html-14" aria-selected="false"><span
+class="mr-2 	far fa-file-image fa-fw"></span> HTML 图像
+</a>
+<div class="divider"></div>
+<a class="nav-link px-4" role="tab" id="html-15-tab" href="html/html-tables.html"
+aria-controls="html-15" aria-selected="false"><span
+class="mr-2 fas fa-window-maximize fa-fw"></span> HTML 表格
+</a>
+<div class="divider"></div>
+<a class="nav-link px-4" role="tab" id="html-16-tab" href="html/html-lists.html"
+aria-controls="html-16" aria-selected="false"><span class="mr-2 fas fa-list fa-fw"></span> HTML
+列表
+</a>
+<div class="divider"></div>
+<a class="nav-link px-4" role="tab" id="html-17-tab" href="html/html-blocks.html"
+aria-controls="html-17" aria-selected="false"><span
+class="mr-2 fas fa-object-group fa-fw"></span> HTML 区块
+</a>
+<div class="divider"></div>
+<a class="nav-link px-4" role="tab" id="html-18-tab" href="html/html-layouts.html"
+aria-controls="html-18" aria-selected="false"><span
+class="mr-2 fas fa-bezier-curve fa-fw"></span> HTML 布局
+</a>
+<div class="divider"></div>
+<a class="nav-link px-4" role="tab" id="html-19-tab" href="html/html-forms.html"
+aria-controls="html-19" aria-selected="false"><span class="mr-2 fas fa-table fa-fw"></span> HTML
+表单
+</a>
+<div class="divider"></div>
+<a class="nav-link px-4" role="tab" id="html-20-tab" href="html/html-iframes.html"
+aria-controls="html-20" aria-selected="false"><span class="mr-2 fas fa-laptop-code fa-fw"></span>
+HTML 框架
+</a>
+<div class="divider"></div>
+</div>
+</div>
+
+<div class="col-md-9 ftco-animate p-4 d-flex align-items-center">
+<div class="tab-content pl-md-5" id="v-pills-tabContent">
+<div class="tab-pane fade show active py-5" role="tabpanel" id="html-2" href="#教程"
+aria-labelledby="html-2-tab">
+<div class="article-body">
+<div class="article-intro" id="content3">
+<h1>HTML 教程- <span class="color_h1">(HTML5 标准)</span></h1>
+<div class="tutintro"><p>
+超文本标记语言（英语：HyperText Markup Language，简称：HTML）是一种用于创建网页的标准标记语言。</p>
+<p>您可以使用 HTML 来建立自己的 WEB 站点，HTML 运行在浏览器上，由浏览器来解析。</p>
+<p>在本教程中，您将学习如何使用 HTML 来创建站点。</p>
+<p>HTML 很容易学习！相信您能很快学会它！</p>
+</div>
+<h2 class="tutheader">HTML 实例</h2>
+<p>本教程包含了数百个 HTML 实例。</p>
+<p>使用本站的编辑器，您可以轻松实现在线修改 HTML，并查看实例运行结果。</p>
+<blockquote><p><strong>注意：</strong>对于中文网页需要使用 <strong>&lt;meta
+charset="utf-8"&gt;</strong> 声明编码，否则会出现乱码。有些浏览器(如 360 浏览器)会设置 GBK 为默认编码，则你需要设置为
+<strong>&lt;meta charset="gbk"&gt;。</strong></p></blockquote>
+<div class="example">
+<h2 class="example">实例</h2>
+<div class="example_code">
+<div class="hl-main"><span class="hl-brackets">&lt;</span><span class="hl-code">!</span><span
+class="hl-var">DOCTYPE</span><span class="hl-code"> </span><span
+class="hl-var">html</span><span class="hl-brackets">&gt;</span><span
+class="hl-code">
+</span><span class="hl-brackets">&lt;</span><span class="hl-reserved">html</span><span
+class="hl-brackets">&gt;</span><span class="hl-code">
+</span><span class="hl-brackets">&lt;</span><span class="hl-reserved">head</span><span
+class="hl-brackets">&gt;</span><span class="hl-code">
+</span><span class="hl-brackets">&lt;</span><span class="hl-reserved">meta</span><span class="hl-code"> </span><span
+class="hl-var">charset</span><span class="hl-code">=</span><span
+class="hl-quotes">"</span><span class="hl-string">utf-8</span><span
+class="hl-quotes">"</span><span class="hl-brackets">&gt;</span><span
+class="hl-code">
+</span><span class="hl-brackets">&lt;</span><span class="hl-reserved">title</span><span
+class="hl-brackets">&gt;</span><span
+class="hl-code">Ordeal</span><span
+class="hl-brackets">&lt;/</span><span
+class="hl-reserved">title</span><span
+class="hl-brackets">&gt;</span><span class="hl-code">
+</span><span class="hl-brackets">&lt;/</span><span class="hl-reserved">head</span><span
+class="hl-brackets">&gt;</span><span class="hl-code">
+</span><span class="hl-brackets">&lt;</span><span class="hl-reserved">body</span><span
+class="hl-brackets">&gt;</span><span class="hl-code">
+</span><span class="hl-brackets">&lt;</span><span class="hl-reserved">h1</span><span class="hl-brackets">&gt;</span><span
+class="hl-code">我的第一个标题</span><span
+class="hl-brackets">&lt;/</span><span class="hl-reserved">h1</span><span
+class="hl-brackets">&gt;</span><span class="hl-code">
+</span><span class="hl-brackets">&lt;</span><span class="hl-reserved">p</span><span
+class="hl-brackets">&gt;</span><span
+class="hl-code">我的第一个段落。</span><span
+class="hl-brackets">&lt;/</span><span class="hl-reserved">p</span><span
+class="hl-brackets">&gt;</span><span class="hl-code">
+</span><span class="hl-brackets">&lt;/</span><span class="hl-reserved">body</span><span
+class="hl-brackets">&gt;</span><span class="hl-code">
+</span><span class="hl-brackets">&lt;/</span><span class="hl-reserved">html</span><span class="hl-brackets">&gt;</span>
+</div>
+</div>
+<br>
+<a target="_blank" href="try/try.php?filename=tryhtml_intro" class="tryitbtn">尝试一下
+»</a>
+<p>点击 "尝试一下" 按钮查看在线实例</p>
+</div>
+<hr>
+<h2>HTML文档的后缀名</h2>
+<ul>
+<li>.html</li>
+<li>.htm</li>
+</ul>
+<p>以上两种后缀名没有区别，都可以使用。</p>
+<h2 class="tutheader">HTML 实例</h2>
+<p>在 HTML 手册中包含了数百个在线实例，您可以在线编辑并查看运行结果。</p>
+<p><a href="html/html-examples.html" target="_blank">查看 HTML 实例！</a></p>
+<h2 class="tutheader">HTML 参考手册</h2>
+<p>在菜鸟教程中，我们提供了完整的 HTML 参考手册，其中包括标签、属性、颜色、实体等等。</p>
+<p><a href="tags/html-reference.html" target="_blank">HTML 标签参考手册</a></p>
+</div>
+</div>
+<p><a href="note-main.html" class="btn btn-primary px-4 py-3">去记笔记</a></p></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+
+<!-- MODAL -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header"><h3 class="modal-title" id="myModalLabel">登录</h3>
+<button type="button" class="close" data-dismiss="modal">
+<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+</button>
+</div>
+<div class="modal-body">
+<div class="form-group">
+<label class="form-check-label" for="username">&ensp;用户id</label>
+<input type="text" placeholder="username..." class="form-control" id="username" name="username">
+</div>
+<div class="form-group">
+<label class="form-check-label" for="password">&ensp;密码</label>
+<input type="password" placeholder="password..." class="form-control" id="password" name="password">
+</div>
+<button class="btn btn-primary" onclick="login()">确认</button>
+</div>
+</div>
+</div>
+</div>
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery-migrate-3.0.1.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.easing.1.3.js"></script>
+<script src="js/jquery.waypoints.min.js"></script>
+<script src="js/jquery.stellar.min.js"></script>
+<script src="js/owl.carousel.min.js"></script>
+<script src="js/jquery.magnific-popup.min.js"></script>
+<script src="js/aos.js"></script>
+<script src="js/jquery.animateNumber.min.js"></script>
+<script src="js/scrollax.min.js"></script>
+<script src="js/google-map.js"></script>
+
+<script src="js/main.js"></script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="zh_cn">
+<head>
 <title>Ordeal</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -111,7 +768,7 @@ data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-labe
 <div class="collapse navbar-collapse" id="ftco-nav">
 <ul class="navbar-nav nav ml-auto" style="align-items: baseline">
 <li class="nav-item">
-<a href="<c:if test="${success == \"true\"}">index-login.html</c:if><c:if test="${success == null}">index.html</c:if>"
+<a href="<c:if test="${success == null}">index.html</c:if>"
 class="nav-link">
 <span>主页</span>
 </a>
@@ -163,7 +820,7 @@ class="nav-link">
 </li>
 <li class="nav-item">
 <button class="btn btn-outline-dark px-4 py-2" data-toggle="modal" data-target="#myModal"
-id="loginbtn" style="display: <c:if test="${success == \"true\"}">none</c:if>">登录
+id="loginbtn" style="display: ">登录
 </button>
 </li>
 </ul>
