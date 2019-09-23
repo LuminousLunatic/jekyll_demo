@@ -1,27 +1,27 @@
 <!DOCTYPE html>
 <html lang="zh_cn">
 <head>
-<title>
-Ordeal
-</title>
+<title>Ordeal</title>
 <meta charset="utf-8">
-<meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="css/fontNunitoSans.css" rel="stylesheet">
 <link href="https://cdn.remixicon.com/releases/v1.2.2/remixicon.css" rel="stylesheet">
-<link crossorigin="anonymous" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" rel="stylesheet">
-<link href="css/open-iconic-bootstrap.min.css" rel="stylesheet">
-<link href="css/animate.css" rel="stylesheet">
-<link href="css/owl.carousel.min.css" rel="stylesheet">
-<link href="css/owl.theme.default.min.css" rel="stylesheet">
-<link href="css/magnific-popup.css" rel="stylesheet">
-<link href="css/aos.css" rel="stylesheet">
-<link href="css/ionicons.min.css" rel="stylesheet">
-<link href="css/flaticon.css" rel="stylesheet">
-<link href="css/icomoon.css" rel="stylesheet">
-<link href="css/style.css" rel="stylesheet">
-<script src="js/jquery.min.js">
-</script>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+<link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
+<link rel="stylesheet" href="css/animate.css">
+<link rel="stylesheet" href="css/owl.carousel.min.css">
+<link rel="stylesheet" href="css/owl.theme.default.min.css">
+<link rel="stylesheet" href="css/magnific-popup.css">
+<link rel="stylesheet" href="css/aos.css">
+<link rel="stylesheet" href="css/ionicons.min.css">
+<link rel="stylesheet" href="css/flaticon.css">
+<link rel="stylesheet" href="css/icomoon.css">
+<link rel="stylesheet" href="css/style.css">
+<script src="js/jquery.min.js"></script>
+
 <script>
+
 function login() {
 var sno = document.getElementById("username").value;
 var password = document.getElementById("password").value;
@@ -68,166 +68,325 @@ xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
 return xmlHttp;
 }
 </script>
+
 <style type="text/css">
 #box::-webkit-scrollbar {
 display: none;
 }
 </style>
-</link>
-</link>
-</link>
-</link>
-</link>
-</link>
-</link>
-</link>
-</link>
-</link>
-</link>
-</link>
-</link>
-</meta>
-</meta>
+
 </head>
-<body data-offset="300" data-spy="scroll" data-target=".site-navbar-target" id="box">
-<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target" id="ftco-navbar">
+
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300" id="box">
+
+<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target"
+id="ftco-navbar">
 <div class="container">
-<a class="navbar-brand" href="index.html">
-Or
-<span>
-deal
-</span>
-</a>
-<button aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" data-target="#ftco-nav" data-toggle="collapse" type="button">
-<span class="oi oi-menu">
-</span>
-Menu
+<a class="navbar-brand" href="index.html">Or<span>deal</span></a>
+<button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse"
+data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+<span class="oi oi-menu"></span> Menu
 </button>
 <div class="collapse navbar-collapse" id="ftco-nav">
 <ul class="navbar-nav nav ml-auto" style="align-items: baseline">
 <li class="nav-item">
-<a ${success='\"true\"}"' href="
+<a href="<c:if test="${success == null}">index.html</c:if>" class="nav-link">
+<span>主页</span>
+</a>
+</li>                <li class="nav-item"><a href="" class="nav-link dropdown-toggle" data-toggle="dropdown">HTML</a>
+<div class="dropdown-menu dropdown-menu-right">
+<a class="dropdown-item" href="html-main.html">HTML 教程</a>
+<div class="dropdown-divider"></div>
+<a class="dropdown-item" href="try/try.php?filename=tryhtml_intro">HTML 实例</a>
+<div class="dropdown-divider"></div>
+<a class="dropdown-item" href="tags/html-reference.html">HTML 参考手册</a>
+</div>
+</li>
+<li class="nav-item"><a href="" class="nav-link dropdown-toggle" data-toggle="dropdown">CSS</a>
+<div class="dropdown-menu dropdown-menu-right">
+<a class="dropdown-item" href="#">CSS 教程</a>
+<div class="dropdown-divider"></div>
+<a class="dropdown-item" href="#">CSS 实例</a>
+<div class="dropdown-divider"></div>
+<a class="dropdown-item" href="#">CSS 参考手册</a>
+<div class="dropdown-divider"></div>
+<a class="dropdown-item" href="#">CSS 响应式设计</a>
+</div>
+</li>
+<li class="nav-item"><a href="" class="nav-link dropdown-toggle" data-toggle="dropdown">JavaScript</a>
+<div class="dropdown-menu dropdown-menu-right">
+<a class="dropdown-item" href="#">Javascript 教程</a>
+<div class="dropdown-divider"></div>
+<a class="dropdown-item" href="#">JS 函数</a>
+<div class="dropdown-divider"></div>
+<a class="dropdown-item" href="#">JS HTML DOM</a>
+<div class="dropdown-divider"></div>
+<a class="dropdown-item" href="#">JS 高级教程</a>
+<div class="dropdown-divider"></div>
+<a class="dropdown-item" href="#">JS 浏览器BOM</a>
+<div class="dropdown-divider"></div>
+<a class="dropdown-item" href="#">JS 库</a>
+<div class="dropdown-divider"></div>
+<a class="dropdown-item" href="#">JS 实例</a>
+<div class="dropdown-divider"></div>
+<a class="dropdown-item" href="#">JS 参考手册</a>
+</div>
+</li>
+<li class="nav-item"><a href="note-main.html" class="nav-link"><span>笔记</span></a></li>
+<li class="nav-item"><a href="share-main.html" class="nav-link"><span>模版</span></a></li>
+<li class="nav-item"><a href="exam-main.html" class="nav-link"><span>测验</span></a></li>
+<li class="nav-item">
+<div class="col-1"></div>
+</li>
+<li class="nav-item">
+<button class="btn btn-outline-dark px-4 py-2" data-toggle="modal" data-target="#myModal"
+id="loginbtn" style="display: ">登录
+</button>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<section id="home-section" class="hero">
+<div class="home-slider js-fullheight owl-carousel">
+<div class="slider-item js-fullheight">
+<div class="overlay"></div>
+<div class="container-fluid p-0">
+<div class="row d-md-flex no-gutters slider-text js-fullheight align-items-center justify-content-end"
+data-scrollax-parent="true">
+<div class="one-third order-md-last img js-fullheight"
+style="background-image:url(images/bg_1.png);">
+<div class="overlay"></div>
+</div>
+<div class="one-forth d-flex js-fullheight align-items-center ftco-animate"
+data-scrollax=" properties: { translateY: '70%' }">
+<div class="text">
+<h1 class="mb-4 mt-3">CSS / HTML / JavaScript <span>定制学习计划</span></h1>
+<p>提供全方面教程，初学者和深入学习兼顾。 <br> 可根据学习经验制定专属学习计划，学习进度显示和教程指引。</p>
+<p><a href="register.html" class="btn btn-primary px-5 py-3 mt-3">去注册</a></p>
+</div>
+</div>
+</div>
+</div>
+</div>
 
-index.html
+<div class="slider-item js-fullheight">
+<div class="overlay"></div>
+<div class="container-fluid p-0">
+<div class="row d-flex no-gutters slider-text js-fullheight align-items-center justify-content-end"
+data-scrollax-parent="true">
+<div class="one-third order-md-last img js-fullheight"
+style="background-image:url(images/bg_2.png);">
+<div class="overlay"></div>
+</div>
+<div class="one-forth d-flex js-fullheight align-items-center ftco-animate"
+data-scrollax=" properties: { translateY: '70%' }">
+<div class="text">
+<h1 class="mb-4 mt-3"><span>在线</span>演示 <br><span>测验</span>学习成果</h1>
+<p>提供在线实例，通过本站在线编辑器，可以在线编辑代码并查看修改后的效果。</p>
+<p><a href="register.html" class="btn btn-primary px-5 py-3 mt-3">去注册</a></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 
-" class="nav-link">
-<span>
-主页
-</span>
-<li class="nav-item">
-<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="">
-HTML
-</a>
-<div class="dropdown-menu dropdown-menu-right">
-<a class="dropdown-item" href="html-main.html">
-HTML 教程
-</a>
-<div class="dropdown-divider">
+
+</section>
+
+<section class="ftco-section">
+<div class="container">
+<div class="row justify-content-center mb-5 pb-3">
+<div class="col-md-7 heading-section ftco-animate text-center">
+<h2 class="mb-4">我们的课程</h2>
 </div>
-<a class="dropdown-item" href="try/try.php?filename=tryhtml_intro">
-HTML 实例
-</a>
-<div class="dropdown-divider">
 </div>
-<a class="dropdown-item" href="tags/html-reference.html">
-HTML 参考手册
+<div class="row">
+<div class="col-md-6 col-lg-4 ftco-animate">
+<div class="block-2">
+<div class="flipper">
+<div class="front" style="background-image: url(images/p1.png);">
+
+<div class="box">
+<h2>CSS</h2>
+<p>描述网页布局</p>
+</div>
+</div>
+<div class="back">
+<!-- back content -->
+<blockquote>
+<p> CSS 指层叠样式表 (Cascading Style Sheets)，外部样式表存储样式，在 HTML 4.0 中引用，
+解决内容与表现分离的问题。 CSS 即多个样式定义层叠为一个层叠样式表。
+</p>
+</blockquote>
+<div class="author d-flex">
+<div class="image mr-3 align-self-center">
+<div class="img" style="background-image: url(images/p1.png);"></div>
+</div>
+<div class="name align-self-center">CSS <span
+class="position">层叠样式表</span></div>
+</div>
+</div>
+</div>
+</div> <!-- .flip-container -->
+</div>
+<div class="col-md-6 col-lg-4 ftco-animate">
+<div class="block-2">
+<div class="flipper">
+<div class="front" style="background-image: url(images/p2.png);">
+<div class="box">
+<h2>HTML</h2>
+<p>定义网页内容</p>
+</div>
+</div>
+<div class="back">
+<!-- back content -->
+<blockquote>
+<p>HTML，即超文本标记语言（Hyper Text Markup Language），是一种用于创建网页的标准标记语言。
+您可以使用 HTML 来建立自己的 WEB 站点，HTML 运行在浏览器上，由浏览器来解析。</p>
+</blockquote>
+<div class="author d-flex">
+<div class="image mr-3 align-self-center">
+<div class="img" style="background-image: url(images/p2.png);"></div>
+</div>
+<div class="name align-self-center">HTML <span
+class="position">超文本标记语言</span></div>
+</div>
+</div>
+</div>
+</div> <!-- .flip-container -->
+</div>
+<div class="col-md-6 col-lg-4 ftco-animate">
+<div class="block-2">
+<div class="flipper">
+<div class="front" style="background-image: url(images/p3.png);">
+<div class="box">
+<h2>JavaScript</h2>
+<p>增加网页行为</p>
+</div>
+</div>
+<div class="back">
+<!-- back content -->
+<blockquote>
+<p> JavaScript 是一种轻量级的编程语言，编程代码可插入 HTML 页面，由所有的现代浏览器执行。
+使用 JavaScript 来处理 HTML 内容和图片，增加点击事件和视觉效果。
+</p>
+</blockquote>
+<div class="author d-flex">
+<div class="image mr-3 align-self-center">
+<div class="img" style="background-image: url(images/p3.png);"></div>
+</div>
+<div class="name align-self-center">JavaScript <span
+class="position">网页上的可运行脚本</span></div>
+</div>
+</div>
+</div>
+</div> <!-- .flip-container -->
+</div>
+</div>
+</div>
+</section>
+
+
+<section class="ftco-section-2 img" style="background-image: url(images/bg_3.png);">
+<div class="container">
+<div class="row d-md-flex justify-content-end">
+<div class="col-md-6">
+<div class="row">
+<div class="col-md-12">
+<a href="#" class="services-wrap ftco-animate">
+<div class="icon d-flex justify-content-center align-items-center">
+<span class="ion-ios-arrow-back"></span>
+<span class="ion-ios-arrow-forward"></span>
+</div>
+<h2>去看 HTML 参考手册</h2>
+<p>HTML 标签、属性、颜色、实体 参考手册</p>
+</a>
+<a href="#" class="services-wrap ftco-animate">
+<div class="icon d-flex justify-content-center align-items-center">
+<span class="ion-ios-arrow-back"></span>
+<span class="ion-ios-arrow-forward"></span>
+</div>
+<h2>去看 CSS 参考手册</h2>
+<p> 选择器参考手册 <span class="mr-2 fab fa-diaspora fa-fw"></span>声音参考手册 <span
+class="mr-2 fab fa-diaspora fa-fw"></span>颜色参考手册</p>
+</a>
+<a href="#" class="services-wrap ftco-animate">
+<div class="icon d-flex justify-content-center align-items-center">
+<span class="ion-ios-arrow-back"></span>
+<span class="ion-ios-arrow-forward"></span>
+</div>
+<h2>去看 JavaScript 参考手册</h2>
+<p>内置对象&emsp;<span class="mr-2 fab fa-diaspora fa-fw"></span>&ensp;Browser 对象&emsp;<span
+class="mr-2 fab fa-diaspora fa-fw"></span>&ensp;HTML DOM 对象</p>
+</a>
+<a href="share-main.html" class="services-wrap ftco-animate">
+<div class="icon d-flex justify-content-center align-items-center">
+<span class="ion-ios-arrow-back"></span>
+<span class="ion-ios-arrow-forward"></span>
+</div>
+<h2>去看模版分享</h2>
+<p>线上用户分享的优质模版&emsp;<span class="mr-2 fab fa-diaspora fa-fw"></span>&ensp;分享你的模版</p>
 </a>
 </div>
-</li>
-<li class="nav-item">
-<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="">
-CSS
-</a>
-<div class="dropdown-menu dropdown-menu-right">
-<a class="dropdown-item" href="#">
-CSS 教程
-</a>
-<div class="dropdown-divider">
 </div>
-<a class="dropdown-item" href="#">
-CSS 实例
-</a>
-<div class="dropdown-divider">
 </div>
-<a class="dropdown-item" href="#">
-CSS 参考手册
-</a>
-<div class="dropdown-divider">
 </div>
-<a class="dropdown-item" href="#">
-CSS 响应式设计
-</a>
 </div>
-</li>
-<li class="nav-item">
-<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="">
-JavaScript
-</a>
-<div class="dropdown-menu dropdown-menu-right">
-<a class="dropdown-item" href="#">
-Javascript 教程
-</a>
-<div class="dropdown-divider">
+</section>
+<footer class="ftco-footer ftco-section" >
+<div class="container">
+<div class="row">
+<div class="col-md-12 text-center">
+<br>
+<p style="color: #7f7f7f"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script>
+All rights reserved | This template is made with
+<i class="icon-heart color-danger" aria-hidden="true"></i> by
+<a href="https://colorlib.com" target="_blank" style="color: #7f7f7f">Colorlib</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
 </div>
-<a class="dropdown-item" href="#">
-JS 函数
-</a>
-<div class="dropdown-divider">
 </div>
-<a class="dropdown-item" href="#">
-JS HTML DOM
-</a>
-<div class="dropdown-divider">
 </div>
-<a class="dropdown-item" href="#">
-JS 高级教程
-</a>
-<div class="dropdown-divider">
+</footer>
+<!-- MODAL -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header"><h3 class="modal-title" id="myModalLabel">登录</h3>
+<button type="button" class="close" data-dismiss="modal">
+<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+</button>
 </div>
-<a class="dropdown-item" href="#">
-JS 浏览器BOM
-</a>
-<div class="dropdown-divider">
+<div class="modal-body">
+<div class="form-group">
+<label class="form-check-label" for="username">&ensp;用户id</label>
+<input type="text" placeholder="username..." class="form-control" id="username" name="username">
 </div>
-<a class="dropdown-item" href="#">
-JS 库
-</a>
-<div class="dropdown-divider">
+<div class="form-group">
+<label class="form-check-label" for="password">&ensp;密码</label>
+<input type="password" placeholder="password..." class="form-control" id="password" name="password">
 </div>
-<a class="dropdown-item" href="#">
-JS 实例
-</a>
-<div class="dropdown-divider">
+<button class="btn btn-primary" onclick="login()">确认</button>
 </div>
-<a class="dropdown-item" href="#">
-JS 参考手册
-</a>
 </div>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="note-main.html">
-<span>
-笔记
-</span>
-</a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="share-main.html">
-<span>
-模版
-</span>
-</a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="exam-main.html">
-<span>
-测验
-</span>
-</a>
-</li>
-<li class="nav-item">
-<div class="col-1">
 </div>
-</li>
-<li class="nav-item">
-<button ${success='\"true\"}"' class="btn btn-outline-dark px-4 py-2" data-target="#myModal" data-toggle="modal" id="loginbtn" style="display:
+</div>
+
+
+<script src="js/jquery-migrate-3.0.1.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.easing.1.3.js"></script>
+<script src="js/jquery.waypoints.min.js"></script>
+<script src="js/jquery.stellar.min.js"></script>
+<script src="js/owl.carousel.min.js"></script>
+<script src="js/jquery.magnific-popup.min.js"></script>
+<script src="js/aos.js"></script>
+<script src="js/jquery.animateNumber.min.js"></script>
+<script src="js/scrollax.min.js"></script>
+<script src="js/google-map.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
